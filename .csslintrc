@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////
+// I'm don't plain support old Internet Explorer versions //
+////////////////////////////////////////////////////////////
+/// adjoining-classes
+// https://github.com/CSSLint/csslint/wiki/Disallow-adjoining-classes
+// I'm not want support IE6
+/// fallback-colors
+// https://github.com/CSSLint/csslint/wiki/Require-fallback-colors
+// I'm don't want support IE8
+/// order-alphabetical
+// https://github.com/CSSLint/csslint/wiki/Disallow-non-alphabetical
+// I'm prefer sort by type —
+// https://css-tricks.com/new-poll-how-order-css-properties/
+--ignore=adjoining-classes,fallback-colors,order-alphabetical

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+
+<head>
+    <!-- Encoding -->
+    <meta charset="utf-8">
+    <!-- Title phrase -->
+    <title>{% block base_pagetitle %}{% endblock %}</title>
+    <!-- Description, EDGE-compatible, different screens -->
+    <meta content="{% block base_metacontent %}{% endblock %}">
+    <meta content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- JQuery -->
+    {% block base_jquery %}{% endblock %}
+    <!-- Mailhu -->
+    {% block base_mailhu %}{% endblock %}
+    <!-- Fancybox -->
+    {% block base_fancybox %}{% endblock %}
+    <!-- Rainbow -->
+    {% block base_rainbow %}{% endblock %}
+    <!-- Tooltipster, see http://ru.stackoverflow.com/a/584718/199934 -->
+    {% block base_tooltipster %}{% endblock %}
+    <!-- Clipboard.js, see http://ru.stackoverflow.com/a/582520/199934 -->
+    {% block base_clipboardjs %}{% endblock %}
+    <!-- Details Polyfill, see http://ru.stackoverflow.com/a/498984/199934 -->
+    {% block base_detailspolyfill %}{% endblock %}
+    <!-- Sasha icon -->
+    <link rel="shortcut icon" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/images/icons/Sasha.ico" type="image/x-icon">
+    <link rel="icon" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/images/Sasha.ico" type="image/x-icon">
+    <!-- Pages style -->
+    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/general/basic.css">
+    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/general/aside.css">
+    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/general/image_{% block base_iconleftorright %}{% endblock %}.css">
+    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/sections/{% block base_pagecolors %}{% endblock %}.css">
+    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/general/fonts.css">
+    <!-- Custom styles -->
+    <!-- Open links in new tabs -->
+    <base target="_blank">
+    <!-- Personal CSS for pages, pelican_javascript, https://github.com/mortada/pelican_javascript/tree/58e7335e5f5fa0acc945425c2d12bf9dcadb150f -->
+    {% if page %} {% if page.stylesheets %} {% for stylesheet in page.stylesheets %} {{ stylesheet }} {% endfor %} {% endif %} {% endif %}
+</head>
+
+<body>
+    <!-- Background aside -->
+    <aside>
+        <!-- Header aside -->
+        <h1 class="cover-text">{% block base_asidetitle %}{% endblock %}</h1>
+    </aside>
+    <!-- Content -->
+    <main>
+        <div class="SashaMargin">
+            <h1 class="SashaTopHeader">{% block base_h1 %}{% endblock %}</h1>
+            <img src="http://2no.co/{% block base_noco %}{% endblock %}.png" alt="image">
+            <div class="SashaVersion">Version {% block base_version %}{% endblock %}</div>
+            <div class="SashaVersion">
+                Last modified —
+                <time datetime="{% block base_date %}{% endblock %}">{% block base_date_displayed %}{% endblock %}</time>
+            </div>
+            {% block base_content %}{% endblock %} {% block base_new_russian %}{% endblock %}
+            <div class="WorkOnYourself">Работайте над собой</div>
+        </div>
+    </main>
+    <!-- Personal JavaScript for pages, pelican_javascript, see https://github.com/mortada/pelican_javascript/ -->
+    {% if page %} {% if page.javascripts %} {% for javascript in page.javascripts %} {{ javascript }} {% endfor %} {% endif %} {% endif %}
+</body>
+
+</html>
