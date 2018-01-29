@@ -69,6 +69,11 @@
     {%- endif -%}
 {%- endblock %}
 
+{% block base_gallery -%}
+{% if page.photo_image %}<a href="{{ SITEURL    }}/{{ page.url }}"><img class="post-thumb" src="{{ SITEURL }}/{{ article.photo_image[2] }}" /></a>
+{% endif %}
+{%- endblock %}
+
 <!-- Right or left Sasha icon -->
 {% block base_iconleftorright %}{{ page.iconleftorright }}{% endblock %}
 <!-- CSS of pages -->

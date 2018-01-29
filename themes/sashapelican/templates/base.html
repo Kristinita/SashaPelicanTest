@@ -36,8 +36,9 @@
     <!-- Custom styles -->
     <!-- Open links in new tabs -->
     <base target="_blank">
+	{% block base_gallery -%}{%- endblock %}
     <!-- Personal CSS for pages, pelican_javascript, https://github.com/mortada/pelican_javascript/tree/58e7335e5f5fa0acc945425c2d12bf9dcadb150f -->
-    {% if page %} {% if page.stylesheets %} {% for stylesheet in page.stylesheets %} {{ stylesheet }} {% endfor %} {% endif %} {% endif %}
+    {% if page %} {% if article.stylesheets %} {% for stylesheet in article.stylesheets %} {{ stylesheet }} {% endfor %} {% endif %} {% endif %}
 </head>
 
 <body>
@@ -61,7 +62,7 @@
         </div>
     </main>
     <!-- Personal JavaScript for pages, pelican_javascript, see https://github.com/mortada/pelican_javascript/ -->
-    {% if page %} {% if page.javascripts %} {% for javascript in page.javascripts %} {{ javascript }} {% endfor %} {% endif %} {% endif %}
+    {% if page %} {% if article.javascripts %} {% for javascript in article.javascripts %} {{ javascript }} {% endfor %} {% endif %} {% endif %}
 </body>
 
 </html>
