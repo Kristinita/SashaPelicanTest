@@ -1,6 +1,6 @@
 <!-- @Author: Kristinita -->
 <!-- @Date:   2018-01-29 06:47:32 -->
-<!-- @Last Modified time: 2018-01-29 06:48:37 -->
+<!-- @Last Modified time: 2018-02-05 11:52:03 -->
 {% extends 'base.html' %}
 
 <!-- Title phrase -->
@@ -72,8 +72,16 @@
     {%- endif -%}
 {%- endblock %}
 
-{% block base_gallery -%}
-{% if article.photo_image %}<a href="{{ SITEURL    }}/{{ article.url }}"><img class="post-thumb" src="{{ SITEURL }}/{{ article.photo_image[2] }}" /></a>
+{% block a_gallery -%}
+{% if article.photo_gallery %}
+<div class="gallery">
+		{% for title, gallery in article.photo_gallery %}
+			<h1>{{ title }}</h1>
+				{% for name, photo, thumb, exif, caption in gallery %}
+						<a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
+				{% endfor %}
+		{% endfor %}
+</div>
 {% endif %}
 {%- endblock %}
 
@@ -94,15 +102,3 @@
 
 <!-- Site content -->
 {% block base_content %}{{ article.content }}{% endblock %}
-
-<!-- Footer: new disgruntled Russian and sign -->
-<!-- E-Mail obfuscate: http://rot13.florianbersier.com/ -->
-{% block base_new_russian %}
-	{%- if article.lang == 'ru' -%}
-	<div class="SashaEmNoColor">По любым вопросам касающимся статьи, можете связаться со мной по электронной почте
-<span id="obf"><script src="{{SITEURL}}/js/personal/mail/personal-mail.js" async></script><noscript><span>ur.atinitsirk@esrevinUfOsserpmEhkynrehCahsaS</span></noscript></span> или же оставив комментарий в <a href="https://github.com/Kristinita/SashaSublime/issues" title="GitHub bugtracker">issue tracker GitHub</a>, кликнув по «New Issue». С комментариями в стиле <a href="{{SITEURL}}/Smert-svobode/Новые-недовольные-русские">новых недовольных русских</a> оставляю право распоряжаться по собственному усмотрению.
-	{% else %}
-	<div class="SashaEmNoColor">For all matters relating to article please contact me by
-<span id="obf"><script src="{{SITEURL}}/js/personal/mail/personal-mail.js" async></script><noscript><span>ur.atinitsirk@esrevinUfOsserpmEhkynrehCahsaS</span></noscript></span> or by <a href="https://github.com/Kristinita/SashaMiscellaneous" title="GitHub bugtracker">GitHub</a>, click «New Issue». With commentary in the style of <a href="{{SITEURL}}/Smert-svobode/Новые-недовольные-русские">new disgruntled Russian</a> i reserve the right to dispose of my own discretion.</div>
-	{% endif %}
-{% endblock %}

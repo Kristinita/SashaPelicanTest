@@ -19,8 +19,8 @@ sys.path.append(os.curdir)
 
 # Absolute path, if site publish
 # Don't use relative paths for publishing!
-SITEURL = 'http://kristinita.ru'
-RELATIVE_URLS = False
+# SITEURL = 'http://kristinita.ru'
+RELATIVE_URLS = True
 
 PLUGINS = [
     'pagefixer',

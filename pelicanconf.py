@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-01-29 06:43:11
+# @Last Modified time: 2018-02-05 12:11:46
 
 import logging
 """ logging pelican module.
@@ -31,7 +31,7 @@ GIT_SHA_METADATA = True
 
 AUTHOR = 'Саша Черных'
 SITENAME = 'Поиск Кристиниты'
-SITEURL = 'http://kristinita.ru'
+SITEURL = '.'
 
 TIMEZONE = 'Europe/Moscow'
 DEFAULT_LANG = 'en'
@@ -161,7 +161,8 @@ PLUGINS = [
     # 'pelican_javascript',
     # 'interlinks',
     # 'section_number',
-    'photos'
+    'pelican-jinja2content',
+    # 'photos'
 ]
 
 PHOTO_ARTICLE = (760, 506, 80)
@@ -170,7 +171,11 @@ PHOTO_GALLERY = (1024, 768, 80)
 
 PHOTO_LIBRARY = "pictures"
 
-PHOTO_RESIZE_JOBS = 5
+PHOTO_RESIZE_JOBS = -1
+
+PHOTO_WATERMARK = True
+
+PHOTO_WATERMARK_TEXT = SITENAME
 
 PHOTO_THUMB = (192, 144, 60)
 

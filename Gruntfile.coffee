@@ -277,7 +277,7 @@ module.exports = (grunt) ->
 		'shell:generate'
 		'move'
 		# 'clean'
-		'replace'
+		# 'replace'
 		# 'stylus'
 		'purifycss'
 	]
