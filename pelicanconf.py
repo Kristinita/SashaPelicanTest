@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-02-05 12:11:46
+# @Last Modified time: 2018-02-05 17:53:05
 
 import logging
 """ logging pelican module.
@@ -157,13 +157,16 @@ OUTPUT_SOURCES = False
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
     # 'filetime_from_git',
+    'jinja2content',
     # 'pagefixer',
     # 'pelican_javascript',
     # 'interlinks',
     # 'section_number',
-    'pelican-jinja2content',
-    # 'photos'
+    # 'pelican-jinja2content',
+    'photos'
 ]
+
+JINJA2CONTENT_TEMPLATES = ['themes\sashapelican\templates']
 
 PHOTO_ARTICLE = (760, 506, 80)
 
