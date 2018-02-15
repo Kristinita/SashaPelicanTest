@@ -2,24 +2,46 @@
 # @Date:   2017-04-05 20:11:18
 # @Last Modified time: 2017-04-11 08:20:09
 
+
 ###########################
 ## Loading Grunt plugins ##
 ###########################
 
+gulp = require('gulp')
+htmltidy = require('gulp-htmltidy')
+
 module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-shell'
-	grunt.loadNpmTasks 'grunt-move'
-	grunt.loadNpmTasks 'grunt-contrib-clean'
-	grunt.loadNpmTasks 'grunt-text-replace'
-	grunt.loadNpmTasks 'grunt-postcss'
-	grunt.loadNpmTasks 'grunt-htmltidy'
-	grunt.loadNpmTasks 'grunt-jsbeautifier'
-	grunt.loadNpmTasks 'grunt-contrib-imagemin'
-	grunt.loadNpmTasks 'grunt-image'
-	grunt.loadNpmTasks 'grunt-contrib-stylus'
+	# grunt.loadNpmTasks 'grunt-move'
+	# grunt.loadNpmTasks 'grunt-contrib-clean'
+	# grunt.loadNpmTasks 'grunt-text-replace'
+	# grunt.loadNpmTasks 'grunt-postcss'
+	# grunt.loadNpmTasks 'grunt-htmltidy'
+	# grunt.loadNpmTasks 'grunt-jsbeautifier'
+	# grunt.loadNpmTasks 'grunt-contrib-imagemin'
+	# grunt.loadNpmTasks 'grunt-image'
+	# grunt.loadNpmTasks 'grunt-contrib-stylus'
 	grunt.loadNpmTasks 'grunt-purifycss'
-	grunt.loadNpmTasks 'grunt-browser-sync'
+	# grunt.loadNpmTasks 'grunt-browser-sync'
+	grunt.loadNpmTasks 'grunt-gulp'
+
+	################
+	## grunt-time ##
+	################
+	# Show time for Grunt tasks:
+	# https://github.com/sindresorhus/time-grunt
+	# require('time-grunt')(grunt)
+
 	grunt.initConfig
+
+		# Base parameter — https://stackoverflow.com/a/44337370/5951529
+		gulp:
+			gulptidy:
+				gulp.src('output/**/*.html', base: ".")
+				.pipe(htmltidy(
+					doctype: 'html5'
+					indent: true
+					wrap: 0)).pipe gulp.dest('./')
 
 		###################
 		## Pelican build ##
@@ -30,7 +52,6 @@ module.exports = (grunt) ->
 		shell:
 			generate: command: 'pelican content -s pelicanconf.py'
 			deploy: command: 'pelican content -s publishconf.py'
-			tidy: command: 'tidy -config "tidy-config.txt" -m "output/**/*.html"'
 
 		##################################
 		## Move files to another folder ##
@@ -257,16 +278,17 @@ module.exports = (grunt) ->
 	# publish — before publishing with absolute paths
 
 	grunt.registerTask 'test', [
-		'shell:tidy'
+		# 'shell:generate'
 		# 'postcss'
 		# 'move'
 		# 'clean'
 		# 'replace'
 		# 'htmltidy'
 		# 'jsbeautifier'
-		# 'purifycss'
+		'purifycss'
 		# 'stylus'
 		# 'browserSync'
+		'gulp'
 	]
 
 	grunt.registerTask 'bro', [
