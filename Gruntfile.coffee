@@ -11,7 +11,7 @@ gulp = require('gulp')
 htmltidy = require('gulp-htmltidy')
 
 module.exports = (grunt) ->
-	grunt.loadNpmTasks 'grunt-shell'
+	# grunt.loadNpmTasks 'grunt-shell'
 	# grunt.loadNpmTasks 'grunt-move'
 	# grunt.loadNpmTasks 'grunt-contrib-clean'
 	# grunt.loadNpmTasks 'grunt-text-replace'
@@ -24,7 +24,8 @@ module.exports = (grunt) ->
 	# grunt.loadNpmTasks 'grunt-purifycss'
 	# grunt.loadNpmTasks 'grunt-browser-sync'
 	# grunt.loadNpmTasks 'grunt-gulp'
-	grunt.loadNpmTasks 'grunt-ngrok'
+	# grunt.loadNpmTasks 'grunt-ngrok'
+	require('load-grunt-tasks')(grunt)
 
 	################
 	## grunt-time ##
@@ -34,6 +35,21 @@ module.exports = (grunt) ->
 	# require('time-grunt')(grunt)
 
 	grunt.initConfig
+
+		posthtml:
+			options:
+				use: [
+					require('posthtml-alt-always')()
+					require('posthtml-aria-tabs')()
+					require('posthtml-doctype')(doctype : 'HTML 4.01 Frameset')
+				]
+			build:
+				files: [
+					expand: true
+					cwd: 'output/PostHTML'
+					src: '**/*.html'
+					dest: 'output/PostHTML'
+				]
 
 		# Base parameter — https://stackoverflow.com/a/44337370/5951529
 		gulp:
@@ -203,14 +219,24 @@ module.exports = (grunt) ->
 				files:
 					src: ['output/**/*.jpg']
 
-		# # Imagemin
-		# ##
-		# imagemin:
-		# 	static:  {
-		 #	dist: {
-		 #	  src: ['output/**/*.{png,jpg,jpeg,gif,svg}'],
-		 #	}
-		 #  }
+		###########################
+		## grunt-contrb-imagemin ##
+		###########################
+		# Plugin for minify images:
+		# https://github.com/gruntjs/grunt-contrib-imagemin
+		# Minify all images in output folder
+		# [NOTE] Non-documented behavior!
+		# Imagemin prettify html and add new attributes instead of obsolete
+		imagemin:
+			dynamic:
+				options:
+					optimizationLevel: 7
+				files: [
+					expand: true
+					cwd: '.'
+					src: ['output/images/**/*.{png,jpg,jpeg,gif,svg}']
+					dest: '.'
+					]
 
 		##############
 		##  Stylus  ##
@@ -245,6 +271,9 @@ module.exports = (grunt) ->
 				src: ['output/Programs/*.html']
 				css: ['output/theme/css/sections/kristinita-temp.css']
 				dest: 'output/theme/css/sections/kristinita-temp.css'
+
+		concurrent:
+			target1: ['clean']
 
 		###################
 		##  Browsersync  ##
@@ -296,7 +325,10 @@ module.exports = (grunt) ->
 		# 'stylus'
 		# 'browserSync'
 		# 'gulp'
-		'ngrok'
+		# 'ngrok'
+		# 'concurrent:target1'
+		# 'imagemin'
+		'posthtml'
 	]
 
 	grunt.registerTask 'bro', [
