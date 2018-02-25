@@ -314,7 +314,7 @@ module.exports = (grunt) ->
 	# publish — before publishing with absolute paths
 
 	grunt.registerTask 'test', [
-		# 'shell:generate'
+		'shell:generate'
 		# 'postcss'
 		# 'move'
 		# 'clean'
@@ -328,7 +328,7 @@ module.exports = (grunt) ->
 		# 'ngrok'
 		# 'concurrent:target1'
 		# 'imagemin'
-		'posthtml'
+		# 'posthtml'
 	]
 
 	grunt.registerTask 'bro', [
