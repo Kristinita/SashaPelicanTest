@@ -1,0 +1,14 @@
+matrix:
+  include:
+    - language: python
+      python: 3.6
+      before_script:
+        - pip install pipenv
+        - pipenv shell
+        - pipenv install --dev
+      script:
+        - pelican content -s pelicanconf.py
+
+notifications:
+  email:
+    - yourname@gmail.com
