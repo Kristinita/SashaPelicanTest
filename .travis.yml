@@ -10,8 +10,11 @@ matrix:
 
     - language: node_js
       node_js: node
+      # grunt-cli globally:
+      # https://stackoverflow.com/a/21133609/5951529
       before_script:
-      	- npm install grunt
+        - npm install -g grunt-cli
+      install:
         - npm install
       script:
         - grunt test
