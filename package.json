@@ -36,13 +36,5 @@
     "posthtml-aria-tabs": "^1.0.0",
     "posthtml-doctype": "^1.1.1",
     "time-grunt": "^1.4.0"
-  },
-  "python": {
-    "path": [".", "python_modules/Python36/Scripts"]
-  },
-  "scripts": {
-    "nopenv": "nopenv",
-    "nopy": "nopy",
-    "npip": "npip"
   }
 }
