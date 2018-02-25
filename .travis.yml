@@ -4,10 +4,13 @@
 # dist: trusty
 # Remove trusty
 # https://blog.travis-ci.com/2017-07-11-trusty-as-default-linux-is-coming
-
 language: python
 
 python: 3.6
+
+env:
+  - TEST_SUITE=test
+  - TEST_SUITE=build
 
 # Sections:
 # https://stackoverflow.com/a/34384262/5951529
@@ -22,10 +25,7 @@ install:
   - npm install
 
 script:
-  - grunt test
-
-deploy:
-  - grunt build
+  - "grunt $TEST_SUITE"
 
 # matrix:
 #   include:
