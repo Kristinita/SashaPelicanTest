@@ -9,9 +9,14 @@ language: python
 
 python: 3.6
 
+install:
+  - pip install pipenv
+  - pipenv install --dev
+  - npm install -g grunt-cli
+  - npm install
+
 script:
-  - python --version
-  - node --version
+  - grunt test
 
 # matrix:
 #   include:
