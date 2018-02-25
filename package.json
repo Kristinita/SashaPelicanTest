@@ -29,8 +29,6 @@
     "grunt-text-replace": "^0.4.0",
     "gulp-htmltidy": "^0.2.4",
     "load-grunt-tasks": "^3.5.2",
-    "nopy": "^0.2.4",
-    "pel": "nopenv pelican-plugin-installer",
     "post-load-plugins": "0.0.22",
     "posthtml-alt-always": "^1.0.1",
     "posthtml-aria-tabs": "^1.0.0",
