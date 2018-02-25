@@ -9,6 +9,12 @@ language: python
 
 python: 3.6
 
+# Sections:
+# https://stackoverflow.com/a/34384262/5951529
+before_install:
+  - pip install --upgrade pip
+  - npm install --global npm
+
 install:
   - pip install pipenv
   - pipenv install --dev
@@ -17,6 +23,7 @@ install:
 
 script:
   - grunt test
+  - grunt build
 
 # matrix:
 #   include:
