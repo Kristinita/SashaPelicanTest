@@ -8,6 +8,8 @@ language: python
 
 python: 3.6
 
+# Multiple scripts
+# http://bit.ly/2ow2DvL
 env:
   - TEST_SUITE=test
   - TEST_SUITE=build
@@ -25,7 +27,7 @@ install:
   - npm install
 
 script:
-  - "grunt $TEST_SUITE"
+  - grunt $TEST_SUITE
 
 # matrix:
 #   include:
