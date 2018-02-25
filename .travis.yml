@@ -1,20 +1,33 @@
-matrix:
-  include:
-    - language: python
-      python: 3.6
-      before_script:
-        - pip install pipenv
-        - pipenv install --dev
-      script:
-        - pelican content -s pelicanconf.py
+# Using Trusty:
+# https://stackoverflow.com/a/21133609/5951529
+sudo: required
+dist: trusty
 
-    - language: node_js
-      node_js: node
-      # grunt-cli globally:
-      # https://stackoverflow.com/a/21133609/5951529
-      before_script:
-        - npm install -g grunt-cli
-      install:
-        - npm install
-      script:
-        - grunt test
+language: python
+
+python: 3.6
+
+script:
+  - python --version
+  - node --version
+
+# matrix:
+#   include:
+#     -
+#       python: 3.6
+#       before_script:
+#         - pip install pipenv
+#         - pipenv install --dev
+#       script:
+#         - pelican content -s pelicanconf.py
+
+#     - language: node_js
+#       node_js: node
+#       # grunt-cli globally:
+#       # https://stackoverflow.com/a/21133609/5951529
+#       before_script:
+#         - npm install -g grunt-cli
+#       install:
+#         - npm install
+#       script:
+#         - grunt test
