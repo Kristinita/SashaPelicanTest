@@ -1,7 +1,9 @@
 # Using Trusty:
 # https://stackoverflow.com/a/21133609/5951529
-sudo: required
-dist: trusty
+# sudo: required
+# dist: trusty
+# Remove trusty
+# https://blog.travis-ci.com/2017-07-11-trusty-as-default-linux-is-coming
 
 language: python
 
