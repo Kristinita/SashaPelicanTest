@@ -22,7 +22,7 @@ install:
   # Virtual environment inside project directory
   # https://jcutrer.com/howto/dev/python/pipenv-pipfile
   # “setx PIPENV_VENV_IN_PROJECT 1” for Windows
-  - export PIPENV_VENV_IN_PROJECT=1
+  # - export PIPENV_VENV_IN_PROJECT=1
   - pipenv --venv
   - pipenv install --dev
   # Grunt tasks needs grunt-cli globally:
