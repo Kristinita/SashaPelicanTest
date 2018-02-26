@@ -1,5 +1,8 @@
 environment:
 
+  GRUNT_COMMAND: test
+  GRUNT_COMMAND: build
+
   matrix:
 
     - PYTHON: "C:\\Python36-x64"
@@ -35,4 +38,4 @@ build_script:
   # Needs AppVeyor console set, see:
   # https://stackoverflow.com/a/48093971/5951529
   - cmd: set PYTHONIOENCODING=utf-8
-  - cmd: grunt test
+  - cmd: grunt %GRUNT_COMMAND%
