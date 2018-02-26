@@ -20,6 +20,7 @@ before_install:
   # https://jcutrer.com/howto/dev/python/pipenv-pipfile
   # “setx PIPENV_VENV_IN_PROJECT 1” for Windows
   - export PIPENV_VENV_IN_PROJECT=1
+  - export PIPENV_IGNORE_VIRTUALENVS=1
 
 install:
   - pip install --upgrade pip
