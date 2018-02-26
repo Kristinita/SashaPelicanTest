@@ -15,8 +15,6 @@ init:
   # https://stackoverflow.com/a/48093971/5951529
   - set PYTHONIOENCODING=utf-8
 
-max_jobs: 2
-
 environment:
 
   matrix:
