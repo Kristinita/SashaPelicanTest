@@ -2,6 +2,9 @@ environment:
 
   matrix:
 
+    # Variables:
+    # https://help.appveyor.com/discussions/problems/4629-how-to-use-appveyor-environment-variable
+    # https://help.appveyor.com/discussions/questions/15163-multiuple-build-matrix-dimensions-from-environment-variables
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6.4"
       PYTHON_ARCH: "64"
@@ -11,9 +14,10 @@ environment:
       PYTHON_ARCH: "64"
       GRUNT_COMMAND: build
 
-
 platform: x64
 
+# Build configuration
+# https://www.appveyor.com/docs/build-configuration/#build-pipeline
 install:
 
   # Needs, because will get messages as:
@@ -24,21 +28,17 @@ install:
   # https://ci.appveyor.com/project/Kristinita/erichek/build/1.0.3
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
-  - cmd: choco install nodejs -y
-  - cmd: pip install --upgrade pip
-  - cmd: pip install pipenv
-  - cmd: setx PIPENV_VENV_IN_PROJECT 1
-  - cmd: pipenv install --dev
-  - cmd: npm install -g grunt-cli
-  - cmd: npm install
-
-test_script:
-  - node --version
-  - npm --version
+  - choco install nodejs -y
+  - pip install --upgrade pip
+  - pip install pipenv
+  - setx PIPENV_VENV_IN_PROJECT 1
+  - pipenv install --dev
+  - npm install -g grunt-cli
+  - npm install
 
 build_script:
 
   # Needs AppVeyor console set, see:
   # https://stackoverflow.com/a/48093971/5951529
-  - cmd: set PYTHONIOENCODING=utf-8
-  - cmd: grunt %GRUNT_COMMAND%
+  - set PYTHONIOENCODING=utf-8
+  - grunt %GRUNT_COMMAND%
