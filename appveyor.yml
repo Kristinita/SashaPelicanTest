@@ -1,3 +1,19 @@
+# AppVeyor configuration:
+# https://www.appveyor.com/docs/appveyor-yml/
+
+init:
+  # Needs, because will get messages as:
+  # «flake8 is not recognized»
+  # https://github.com/ogrisel/python-appveyor-demo/blob/master/appveyor.yml
+  # Python 2 by default, see:
+  # https://www.appveyor.com/docs/build-environment/#python
+  # https://ci.appveyor.com/project/Kristinita/erichek/build/1.0.3
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - setx PIPENV_VENV_IN_PROJECT 1
+  # Needs AppVeyor console set, see:
+  # https://stackoverflow.com/a/48093971/5951529
+  - set PYTHONIOENCODING=utf-8
+
 environment:
 
   matrix:
@@ -20,25 +36,13 @@ platform: x64
 # https://www.appveyor.com/docs/build-configuration/#build-pipeline
 install:
 
-  # Needs, because will get messages as:
-  # «flake8 is not recognized»
-  # https://github.com/ogrisel/python-appveyor-demo/blob/master/appveyor.yml
-  # Python 2 by default, see:
-  # https://www.appveyor.com/docs/build-environment/#python
-  # https://ci.appveyor.com/project/Kristinita/erichek/build/1.0.3
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-
   - choco install nodejs -y
   - pip install --upgrade pip
   - pip install pipenv
-  - setx PIPENV_VENV_IN_PROJECT 1
   - pipenv install --dev
   - npm install -g grunt-cli
   - npm install
 
 build_script:
 
-  # Needs AppVeyor console set, see:
-  # https://stackoverflow.com/a/48093971/5951529
-  - set PYTHONIOENCODING=utf-8
   - grunt %GRUNT_COMMAND%
