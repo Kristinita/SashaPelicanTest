@@ -15,6 +15,8 @@ init:
   # https://stackoverflow.com/a/48093971/5951529
   - set PYTHONIOENCODING=utf-8
 
+max_jobs: 2
+
 environment:
 
   matrix:
@@ -43,6 +45,14 @@ install:
   - pipenv install --dev
   - npm install -g grunt-cli
   - npm install
+
+# Check, that virtual environment install inside project
+before_build:
+
+  # Get current working directory:
+  # https://stackoverflow.com/a/607682/5951529
+  - cd
+  - pipenv --venv
 
 build_script:
 
