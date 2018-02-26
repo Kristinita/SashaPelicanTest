@@ -33,7 +33,7 @@ environment:
 
 platform: x64
 
-# Build configuration
+# Build configuration:
 # https://www.appveyor.com/docs/build-configuration/#build-pipeline
 install:
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script>
+        <!--
+        ok(true, "script within html comments executed");
+        -->
+    </script>
+    <script>
+        < ![CDATA[
+            ok(true, "script within CDATA executed");
+        ]] >
+    </script>
+    <title></title>
+  </head>
+  <body>
+  </body>
+</html>
