@@ -23,6 +23,8 @@ install:
   - cmd: pip install pipenv
   - cmd: setx PIPENV_VENV_IN_PROJECT 1
   - cmd: pipenv install --dev
+  - cmd: npm install -g grunt-cli
+  - cmd: npm install
 
 test_script:
   - node --version
@@ -33,4 +35,4 @@ build_script:
   # Needs AppVeyor console set, see:
   # https://stackoverflow.com/a/48093971/5951529
   - cmd: set PYTHONIOENCODING=utf-8
-  - cmd: pipenv run pelican content -s pelicanconf.py
+  - cmd: grunt test

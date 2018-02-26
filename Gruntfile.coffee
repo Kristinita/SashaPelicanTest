@@ -67,7 +67,7 @@ module.exports = (grunt) ->
 		## http://manos.im/blog/static-site-pelican-grunt-travis-github-pages/
 		## https://github.com/sindresorhus/grunt-shell
 		shell:
-			generate: command: 'pelican content -s pelicanconf.py'
+			generate: command: 'pipenv run pelican content -s pelicanconf.py'
 			deploy: command: 'pelican content -s publishconf.py'
 
 		##################################
