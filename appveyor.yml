@@ -6,7 +6,11 @@ environment:
       PYTHON_VERSION: "3.6.4"
       PYTHON_ARCH: "64"
       GRUNT_COMMAND: test
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6.4"
+      PYTHON_ARCH: "64"
       GRUNT_COMMAND: build
+
 
 platform: x64
 
