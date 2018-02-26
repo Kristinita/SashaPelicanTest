@@ -351,7 +351,6 @@ module.exports = (grunt) ->
 		'replace'
 		'stylus'
 		'purifycss'
-		'postcss'
 		'jsbeautifier'
 	]
 	return
