@@ -25,9 +25,11 @@ install:
   - pip install --upgrade pip
   - npm install --global npm
   - pip install pipenv
+  - echo $PWD
   - pipenv install --dev
   # Grunt tasks needs grunt-cli globally:
   # https://stackoverflow.com/a/21133609/5951529
+  - pipenv --venv
   - npm install -g grunt-cli
   - npm install
 
