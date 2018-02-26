@@ -21,8 +21,8 @@ install:
   - cmd: pip install --upgrade pip
   - cmd: pip install pipenv
   - cmd: setx PIPENV_VENV_IN_PROJECT 1
-  - cmd: pipenv --venv
   - cmd: pipenv install --dev
+  - cmd: pipenv --venv
 
 build_script:
 
