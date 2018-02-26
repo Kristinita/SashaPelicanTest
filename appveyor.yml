@@ -2,6 +2,8 @@
 # https://www.appveyor.com/docs/appveyor-yml/
 
 init:
+  - setx PIPENV_VENV_IN_PROJECT 1
+  - refreshenv
   # Needs, because will get messages as:
   # «flake8 is not recognized»
   # https://github.com/ogrisel/python-appveyor-demo/blob/master/appveyor.yml
@@ -9,8 +11,6 @@ init:
   # https://www.appveyor.com/docs/build-environment/#python
   # https://ci.appveyor.com/project/Kristinita/erichek/build/1.0.3
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - setx PIPENV_VENV_IN_PROJECT 1
-  - refreshenv
   # Needs AppVeyor console set, see:
   # https://stackoverflow.com/a/48093971/5951529
   - set PYTHONIOENCODING=utf-8
