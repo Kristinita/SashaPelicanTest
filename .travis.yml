@@ -12,18 +12,19 @@ env:
   - GRUNT_COMMAND=build
 
 # Sections:
+# https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
 # https://stackoverflow.com/a/34384262/5951529
-before_install:
-  - pip install --upgrade pip
-  - npm install --global npm
 
-install:
-  - pip install pipenv
+before_install:
   # Virtual environment inside project directory
   # https://jcutrer.com/howto/dev/python/pipenv-pipfile
   # “setx PIPENV_VENV_IN_PROJECT 1” for Windows
   - export PIPENV_VENV_IN_PROJECT=1
-  - pipenv --venv
+
+install:
+  - pip install --upgrade pip
+  - npm install --global npm
+  - pip install pipenv
   - pipenv install --dev
   # Grunt tasks needs grunt-cli globally:
   # https://stackoverflow.com/a/21133609/5951529
