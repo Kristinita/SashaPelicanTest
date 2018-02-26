@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-02-25 18:42:20
+# @Last Modified time: 2018-02-26 08:29:42
 
 import logging
 """ logging pelican module.
@@ -158,70 +158,72 @@ PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
     # 'filetime_from_git',
     # 'jinja2content',
+    'just_table'
     # 'pagefixer',
     # 'pelican_javascript',
     # 'interlinks',
     # 'section_number',
     # 'pelican-jinja2content',
     # 'photos'
+    'pin_to_top'
 ]
 
-JINJA2CONTENT_TEMPLATES = ['themes\sashapelican\templates']
+# JINJA2CONTENT_TEMPLATES = ['themes\sashapelican\templates']
 
-PHOTO_ARTICLE = (760, 506, 80)
+# PHOTO_ARTICLE = (760, 506, 80)
 
-PHOTO_GALLERY = (1024, 768, 80)
+# PHOTO_GALLERY = (1024, 768, 80)
 
-PHOTO_LIBRARY = "pictures"
+# PHOTO_LIBRARY = "pictures"
 
-PHOTO_RESIZE_JOBS = -1
+# PHOTO_RESIZE_JOBS = -1
 
-PHOTO_WATERMARK = True
+# PHOTO_WATERMARK = True
 
-PHOTO_WATERMARK_TEXT = SITENAME
+# PHOTO_WATERMARK_TEXT = SITENAME
 
-PHOTO_THUMB = (192, 144, 60)
+# PHOTO_THUMB = (192, 144, 60)
 
-# Deadlinks
-# https://github.com/silentlamb/pelican-deadlinks/tree/2689d7ebc4a3e05b74d681b46d9f6db7fd5f135e
+# # Deadlinks
+# # https://github.com/silentlamb/pelican-deadlinks/tree/2689d7ebc4a3e05b74d681b46d9f6db7fd5f135e
 
-DEADLINK_VALIDATION = True
+# DEADLINK_VALIDATION = True
 
-DEADLINK_OPTS = {
-    # Replace dead link to Internet Archive link
-    'archive': True,
-    'classes': ['SashaDeadlink'],
-    # Disable «403» or «404» text after link in generated HTML
-    'labels': False
-}
+# DEADLINK_OPTS = {
+#     # Replace dead link to Internet Archive link
+#     'archive': True,
+#     'classes': ['SashaDeadlink'],
+#     # Disable «403» or «404» text after link in generated HTML
+#     'labels': False
+# }
 
-# Sitemap
-# https://github.com/getpelican/pelican-plugins/tree/master/sitemap
+# # Sitemap
+# # https://github.com/getpelican/pelican-plugins/tree/master/sitemap
 
-SITEMAP = {
-    'format': 'xml',
-    'priorities': {
-        'articles': 0,
-        'indexes': 0.5,
-        'pages': 1
-    },
-    'changefreqs': {
-        'articles': 'never',
-        'indexes': 'weekly',
-        'pages': 'always'
-    }
-}
+# SITEMAP = {
+#     'format': 'xml',
+#     'priorities': {
+#         'articles': 0,
+#         'indexes': 0.5,
+#         'pages': 1
+#     },
+#     'changefreqs': {
+#         'articles': 'never',
+#         'indexes': 'weekly',
+#         'pages': 'always'
+#     }
+# }
 
-# Section number
-# https://github.com/getpelican/pelican-plugins/tree/master/section_number
+# # Section number
+# # https://github.com/getpelican/pelican-plugins/tree/master/section_number
 
-SECTION_NUMBER_MAX = 5
+# SECTION_NUMBER_MAX = 5
 
-# Interlinks for generate links for frequently used sites
-# https://github.com/getpelican/pelican-plugins/tree/master/interlinks
-INTERLINKS = {
-    'kristinita': 'http://kristinita.ru/#gsc.tab=0&gsc.q='
-}
+# # Interlinks for generate links for frequently used sites
+# # https://github.com/getpelican/pelican-plugins/tree/master/interlinks
+# INTERLINKS = {
+#     'kristinita': 'http://kristinita.ru/#gsc.tab=0&gsc.q='
+# }
 
 
 # ****************************************************************************
