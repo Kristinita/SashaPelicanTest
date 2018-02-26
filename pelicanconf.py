@@ -1,23 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-02-25 18:42:20
-
-import logging
-""" logging pelican module.
-
-For disabling warnings:
-http://docs.getpelican.com/en/stable/settings.html#logging
-"""
-
-import sys
-"""sys module.
-
-For download plugins from “plugins” folder.
-"""
-
-# That Pelican see plugins from this folder
-sys.path.append('plugins')
+# @Last Modified time: 2018-02-26 20:11:28
 
 # Do not touch in generation process
 
@@ -158,12 +142,14 @@ PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
     # 'filetime_from_git',
     # 'jinja2content',
+    'just_table',
     # 'pagefixer',
     # 'pelican_javascript',
     # 'interlinks',
     # 'section_number',
     # 'pelican-jinja2content',
     # 'photos'
+    'putsashi'
 ]
 
 JINJA2CONTENT_TEMPLATES = ['themes\sashapelican\templates']
@@ -283,7 +269,3 @@ DEFAULT_PAGINATION = False
 # Also unexpected &nbsp; after last word in line.
 
 TYPOGRIFY = False
-
-# Disable logging of empty alt attribute, needs “import logging” module
-
-LOG_FILTER = [(logging.WARN, 'Empty alt attribute for image %s in %s')]

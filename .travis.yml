@@ -8,8 +8,8 @@ python: 3.6
 # Multiple scripts
 # http://bit.ly/2ow2DvL
 env:
-  - GRUNT_COMMAND=test
   - GRUNT_COMMAND=build
+  - GRUNT_COMMAND=publish
 
 # Sections:
 # https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle

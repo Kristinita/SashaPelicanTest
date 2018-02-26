@@ -1,6 +1,6 @@
 Title: Kristinta photos
 Date: 2017-07-13 23:51:25
-Modified: 2018-02-05 17:53:44
+Modified: 2018-02-26 20:09:15
 Author: Sasha Chernykh
 Lang: en
 Summary: Photos of Kristina Kiva
@@ -14,17 +14,14 @@ Gemini: true
 Jquerylazy: true
 Fancybox: true
 
+Sasha!
+
 Beginning text
 
-{% if photo_gallery %}
-<div class="gallery">
-        {% for title, gallery in photo_gallery %}
-            <h1>{{ title }}</h1>
-                {% for name, photo, thumb, exif, caption in gallery %}
-                        <a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
-                {% endfor %}
-        {% endfor %}
-</div>
-{% endif %}
+[jtable]
+Year,Make,Model,Length
+1994,Ford,E350,2.34
+2000,Mercury,Cougar,2.38
+[/jtable]
 
 Ending text

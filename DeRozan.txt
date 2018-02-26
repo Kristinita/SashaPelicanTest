@@ -2,85 +2,33 @@ DEBUG: Pelican version: 3.7.1
 DEBUG: Python version: 3.6.4
 DEBUG: Adding current directory to system path
 DEBUG: Temporarily adding PLUGIN_PATHS to system path
-DEBUG: Loading plugin `filetime_from_git`
-DEBUG: Popen(['git', 'version'], cwd=D:\SashaPelicanTest, universal_newlines=False, shell=None)
-DEBUG: Registering plugin `filetime_from_git`
-DEBUG: Loading plugin `pagefixer`
-DEBUG: Registering plugin `pagefixer`
-DEBUG: Loading plugin `pelican_javascript`
-DEBUG: Registering plugin `pelican_javascript`
-DEBUG: Loading plugin `interlinks`
-DEBUG: Registering plugin `interlinks`
-DEBUG: Loading plugin `section_number`
-DEBUG: Registering plugin `section_number`
+DEBUG: Loading plugin `just_table`
+DEBUG: Registering plugin `just_table`
+DEBUG: Loading plugin `putsashi`
+DEBUG: Registering plugin `putsashi`
 DEBUG: Restoring system path
 DEBUG: Template list: ['!simple/archives.html', '!simple/article.html', '!simple/author.html', '!simple/authors.html', '!simple/base.html', '!simple/categories.html', '!simple/category.html', '!simple/gosquared.html', '!simple/index.html', '!simple/page.html', '!simple/pagination.html', '!simple/period_archives.html', '!simple/tag.html', '!simple/tags.html', '!simple/translations.html', '404.html', '8523f77e-62ab-40fe-a572-ed1b891bc142.dmp', 'about.html', 'archives.html', 'article.html', 'author.html', 'authors.html', 'base.html', 'categories.html', 'category.html', 'gosquared.html', 'index.html', 'page.html', 'pagination.html', 'period_archives.html', 'sasha-black.html', 'tag.html', 'tags.html', 'translations.html']
-DEBUG: Read file SashaTest/SashaTest.md -> Article
+DEBUG: Read file SashaTest/KristinaPhotos.md -> Article
 DEBUG: Signal article_generator_preread.send(ArticlesGenerator)
-DEBUG: Successfuly imported extension module "markdown.extensions.extra".
-DEBUG: Successfuly imported extension module "markdown.extensions.smart_strong".
-DEBUG: Successfully loaded extension "markdown.extensions.smart_strong.SmartEmphasisExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.fenced_code".
-DEBUG: Successfully loaded extension "markdown.extensions.fenced_code.FencedCodeExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.footnotes".
-DEBUG: Successfully loaded extension "markdown.extensions.footnotes.FootnoteExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.attr_list".
-DEBUG: Successfully loaded extension "markdown.extensions.attr_list.AttrListExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.def_list".
-DEBUG: Successfully loaded extension "markdown.extensions.def_list.DefListExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.tables".
-DEBUG: Successfully loaded extension "markdown.extensions.tables.TableExtension".
-DEBUG: Successfuly imported extension module "markdown.extensions.abbr".
-DEBUG: Successfully loaded extension "markdown.extensions.abbr.AbbrExtension".
-DEBUG: Successfully loaded extension "markdown.extensions.extra.ExtraExtension".
 DEBUG: Successfuly imported extension module "markdown.extensions.meta".
 DEBUG: Successfully loaded extension "markdown.extensions.meta.MetaExtension".
 DEBUG: Signal article_generator_context.send(ArticlesGenerator, <metadata>)
-DEBUG: Failed checking if running in CYGWIN due to: 'FileNotFoundError: [WinError 2] The system cannot find the file specified'
-DEBUG: Popen(['git', 'ls-files', b'D:\\SashaPelicanTest\\content\\SashaTest\\SashaTest.md', '--error-unmatch'], cwd=D:\SashaPelicanTest, universal_newlines=False, shell=None)
-ERROR: Could not process SashaTest\SashaTest.md
-  | TypeError: a bytes-like object is required, not 'str'
-  |___
-  | Traceback (most recent call last):
-  |   File "c:\python36\lib\site-packages\pelican\generators.py", line 523, in generate_context
-  |     context_sender=self)
-  |   File "c:\python36\lib\site-packages\pelican\readers.py", line 572, in read_file
-  |     context=context)
-  |   File "c:\python36\lib\site-packages\pelican\contents.py", line 153, in __init__
-  |     signals.content_object_init.send(self)
-  |   File "c:\python36\lib\site-packages\blinker\base.py", line 267, in send
-  |     for receiver in self.receivers_for(sender)]
-  |   File "c:\python36\lib\site-packages\blinker\base.py", line 267, in <listcomp>
-  |     for receiver in self.receivers_for(sender)]
-  |   File "D:\SashaPelicanTest\pelican-plugins\filetime_from_git\registration.py", line 15, in send_content_git_object_init
-  |     content_git_object_init.send(content, git_content=GitContentAdapter(content))
-  |   File "c:\python36\lib\site-packages\blinker\base.py", line 267, in send
-  |     for receiver in self.receivers_for(sender)]
-  |   File "c:\python36\lib\site-packages\blinker\base.py", line 267, in <listcomp>
-  |     for receiver in self.receivers_for(sender)]
-  |   File "D:\SashaPelicanTest\pelican-plugins\filetime_from_git\actions.py", line 40, in filetime_from_git
-  |     if git_content.is_managed_by_git():
-  |   File "c:\python36\lib\site-packages\pelican\utils.py", line 173, in __call__
-  |     value = self.func(*args)
-  |   File "D:\SashaPelicanTest\pelican-plugins\filetime_from_git\content_adapter.py", line 41, in is_managed_by_git
-  |     return self.git.is_file_managed_by_git(self.content.source_path)
-  |   File "D:\SashaPelicanTest\pelican-plugins\filetime_from_git\git_wrapper.py", line 44, in is_file_managed_by_git
-  |     with_exceptions=False)
-  |   File "c:\python36\lib\site-packages\git\cmd.py", line 732, in execute
-  |     **subprocess_kwargs
-  |   File "c:\python36\lib\subprocess.py", line 709, in __init__
-  |     restore_signals, start_new_session)
-  |   File "c:\python36\lib\subprocess.py", line 971, in _execute_child
-  |     args = list2cmdline(args)
-  |   File "c:\python36\lib\subprocess.py", line 461, in list2cmdline
-  |     needquote = (" " in arg) or ("\t" in arg) or not arg
-  | TypeError: a bytes-like object is required, not 'str'
+DEBUG: Read file images/interface_images/clippy.svg -> Static
+DEBUG: Signal static_generator_preread.send(StaticGenerator)
+DEBUG: Signal static_generator_context.send(StaticGenerator, <metadata>)
+DEBUG: Read file images/interface_images/external-link.svg -> Static
+DEBUG: Read file images/interface_images/transparent-one-pixel.png -> Static
 -> Writing D:\SashaPelicanTest\output\feeds/all.atom.xml
+-> Writing D:\SashaPelicanTest\output\feeds/kristina.atom.xml
+-> Writing D:\SashaPelicanTest\output\SashaTest/KristinaPhotos.html
 -> Writing D:\SashaPelicanTest\output\index.html
 -> Writing D:\SashaPelicanTest\output\tag/alltags.html
 -> Writing D:\SashaPelicanTest\output\categories.html
 -> Writing D:\SashaPelicanTest\output\authors.html
 -> Writing D:\SashaPelicanTest\output\archives.html
+-> Writing D:\SashaPelicanTest\output\tag/kristina.html
+-> Writing D:\SashaPelicanTest\output\category/kristina.html
+-> Writing D:\SashaPelicanTest\output\author/sasha-chernykh.html
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\bower-components\angular\.bower.json to D:\SashaPelicanTest\output\theme\bower-components\angular\.bower.json
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\bower-components\angular\angular-csp.css to D:\SashaPelicanTest\output\theme\bower-components\angular\angular-csp.css
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\bower-components\angular\angular.js to D:\SashaPelicanTest\output\theme\bower-components\angular\angular.js
@@ -945,4 +893,7 @@ ERROR: Could not process SashaTest\SashaTest.md
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\node_modules\tooltipster\src\js\tooltipster.js to D:\SashaPelicanTest\output\theme\node_modules\tooltipster\src\js\tooltipster.js
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\node_modules\tooltipster\src\js\plugins\tooltipster\sideTip\tooltipster-sideTip.js to D:\SashaPelicanTest\output\theme\node_modules\tooltipster\src\js\plugins\tooltipster\sideTip\tooltipster-sideTip.js
 -> Copying D:\SashaPelicanTest\themes\sashapelican\static\node_modules\tooltipster\src\js\plugins\tooltipster\SVG\tooltipster-SVG.js to D:\SashaPelicanTest\output\theme\node_modules\tooltipster\src\js\plugins\tooltipster\SVG\tooltipster-SVG.js
-Done: Processed 0 articles, 0 drafts, 0 pages and 0 hidden pages in 1.14 seconds.
+-> Copying D:\SashaPelicanTest\content\images\interface_images\clippy.svg to images/interface_images/clippy.svg
+-> Copying D:\SashaPelicanTest\content\images\interface_images\external-link.svg to images/interface_images/external-link.svg
+-> Copying D:\SashaPelicanTest\content\images\interface_images\transparent-one-pixel.png to images/interface_images/transparent-one-pixel.png
+Done: Processed 1 article, 0 drafts, 0 pages and 0 hidden pages in 1.00 seconds.
