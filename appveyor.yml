@@ -6,8 +6,6 @@ environment:
       PYTHON_VERSION: "3.6.4"
       PYTHON_ARCH: "64"
 
-    - nodejs_version: "9"
-
 platform: x64
 
 install:
@@ -20,6 +18,7 @@ install:
   # https://ci.appveyor.com/project/Kristinita/erichek/build/1.0.3
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
+  - cmd: choco install nodejs -y
   - cmd: pip install --upgrade pip
   - cmd: pip install pipenv
   - cmd: setx PIPENV_VENV_IN_PROJECT 1
