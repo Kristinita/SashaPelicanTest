@@ -29,4 +29,4 @@ build_script:
   # Needs AppVeyor console set, see:
   # https://stackoverflow.com/a/48093971/5951529
   - cmd: set PYTHONIOENCODING=utf-8
-  - cmd: pelican content -s pelicanconf.py
+  - cmd: pipenv run pelican content -s pelicanconf.py
