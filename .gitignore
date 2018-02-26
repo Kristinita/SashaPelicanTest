@@ -1,2 +1,4 @@
 /output
 /pelican-plugins
+/.venv
+/node_modules
