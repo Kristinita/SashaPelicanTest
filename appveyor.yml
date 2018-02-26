@@ -6,6 +6,8 @@ environment:
       PYTHON_VERSION: "3.6.4"
       PYTHON_ARCH: "64"
 
+    - nodejs_version: "9"
+
 platform: x64
 
 install:
@@ -22,7 +24,10 @@ install:
   - cmd: pip install pipenv
   - cmd: setx PIPENV_VENV_IN_PROJECT 1
   - cmd: pipenv install --dev
-  - cmd: pipenv --venv
+
+test_script:
+  - node --version
+  - npm --version
 
 build_script:
 
