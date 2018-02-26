@@ -67,8 +67,8 @@ module.exports = (grunt) ->
 		## http://manos.im/blog/static-site-pelican-grunt-travis-github-pages/
 		## https://github.com/sindresorhus/grunt-shell
 		shell:
-			generate: command: 'pipenv run pelican content -s pelicanconf.py'
-			deploy: command: 'pelican content -s publishconf.py'
+			generate: command: 'pipenv run pelican content -s pelicanconf.py --fatal warnings'
+			deploy: command: 'pelican content -s publishconf.py --fatal warnings'
 
 		##################################
 		## Move files to another folder ##
