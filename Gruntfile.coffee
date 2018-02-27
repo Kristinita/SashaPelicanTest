@@ -36,6 +36,11 @@ module.exports = (grunt) ->
 
 	grunt.initConfig
 
+		nicePackage:
+			all:
+				options:
+					blankLine: false
+
 		posthtml:
 			options:
 				use: [

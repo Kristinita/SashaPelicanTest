@@ -1,11 +1,26 @@
 {
-  "name": "Pelican",
-  "version": "1.0.0",
-  "description": "Kristinita's Search site",
-  "main": "Gruntfile.js",
-  "repository": "https://github.com/Kristinita/KristinitaPelican",
+  "name": "KristinitaPelican",
+  "description": "Demo Pelican site",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Kristinita/Kristinita/SashaPelicanTest",
+  "author": "Sasha Chernykh (http://uid.me/sasha_chernykh)",
+  "repository": "github:Kristinita/SashaPelicanTest",
+  "bugs": {
+    "url": "https://github.com/Kristinita/SashaPelicanTest/issues"
+  },
   "license": "MIT",
-  "author": "Sasha Chernykh",
+  "files": [
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Pelican"
+  ],
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^3.0.4",
@@ -20,6 +35,7 @@
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-move": "0.0.5",
     "grunt-ngrok": "^0.2.2",
+    "grunt-nice-package": "^0.10.4",
     "grunt-posthtml": "^0.5.0",
     "grunt-prettify": "^0.4.0",
     "grunt-purifycss": "^0.1.2",
