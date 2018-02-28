@@ -45,7 +45,8 @@ install:
   - npm install -g parallelshell
   - pip install --upgrade pip
   - parallelshell "npm install -g grunt-cli" "pip install pipenv"
-  - parallelshell "pipenv install --dev" "npm install"
+  - start pipenv install --dev
+  - start npm install
 
 # Check, that virtual environment install inside project
 before_build:
