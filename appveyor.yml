@@ -42,11 +42,17 @@ platform: x64
 install:
 
   - choco install nodejs -y
-  - npm install -g parallelshell
+  # [WARNING] npm parallel doesn't work, example:
+  # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.25/job/70x5h1qq2d6j8gyp
+  # [NOTE] Parallelshell works, but no time economy, compare:
+  # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347254717
+  # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347267767
+  # - npm install -g parallelshell
   - pip install --upgrade pip
-  - parallelshell "npm install -g grunt-cli" "pip install pipenv"
-  - start pipenv install --dev
-  - start npm install
+  # [WARNING] start command doesn't work:
+  # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.31
+  # https://github.com/vim/vim-win32-installer/blob/master/appveyor.yml
+  - "%APPVEYOR_BUILD_FOLDER%/appveyor.bat"
 
 # Check, that virtual environment install inside project
 before_build:
