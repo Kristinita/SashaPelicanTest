@@ -44,7 +44,8 @@ install:
   - choco install nodejs -y
   - npm install -g parallel
   - pip install --upgrade pip
-  - npm install -g grunt-cli | parallel pip install pipenv
+  - npm install -g grunt-cli
+  - pip install pipenv
   - pipenv install --dev | parallel npm install
 
 # Check, that virtual environment install inside project

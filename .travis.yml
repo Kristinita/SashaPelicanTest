@@ -1,3 +1,8 @@
+# Don't download all repository history, that save a time:
+# https://docs.travis-ci.com/user/customizing-the-build/#Git-Clone-Depth
+git:
+  depth: 1
+
 # Trusty by default:
 # https://stackoverflow.com/a/21133609/5951529
 # https://blog.travis-ci.com/2017-07-11-trusty-as-default-linux-is-coming
