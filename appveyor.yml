@@ -52,7 +52,7 @@ install:
   # [WARNING] start command doesn't work:
   # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.31
   # https://github.com/vim/vim-win32-installer/blob/master/appveyor.yml
-  - "%APPVEYOR_BUILD_FOLDER%\appveyor.bat"
+  - "%APPVEYOR_BUILD_FOLDER%/appveyor.bat"
 
 # Check, that virtual environment install inside project
 before_build:
