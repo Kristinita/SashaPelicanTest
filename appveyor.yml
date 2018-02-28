@@ -38,11 +38,10 @@ platform: x64
 install:
 
   - choco install nodejs -y
+  - npm install -g parallel
   - pip install --upgrade pip
-  - pip install pipenv
-  - pipenv install --dev
-  - npm install -g grunt-cli
-  - npm install
+  - pip install pipenv | parallel npm install -g grunt-cli
+  - pipenv install --dev | parallel npm install
 
 # Check, that virtual environment install inside project
 before_build:
