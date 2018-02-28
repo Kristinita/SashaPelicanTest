@@ -1,6 +1,10 @@
 # AppVeyor configuration:
 # https://www.appveyor.com/docs/appveyor-yml/
 
+# Don't download all repository history, that save a time:
+# https://www.appveyor.com/docs/how-to/repository-shallow-clone/#setting-depth-of-git-clone-command
+clone_depth: 1
+
 init:
   - setx PIPENV_VENV_IN_PROJECT 1
   - refreshenv
@@ -40,7 +44,7 @@ install:
   - choco install nodejs -y
   - npm install -g parallel
   - pip install --upgrade pip
-  - pip install pipenv | parallel npm install -g grunt-cli
+  - npm install -g grunt-cli | parallel pip install pipenv
   - pipenv install --dev | parallel npm install
 
 # Check, that virtual environment install inside project
