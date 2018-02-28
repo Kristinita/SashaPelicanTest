@@ -31,11 +31,14 @@ before_install:
 
 install:
   - npm install -g parallelshell
-  - parallelshell "pip install --upgrade pip" "npm install --global npm"
+  - pip install --upgrade pip
+  - npm install --global npm
   # Grunt tasks needs grunt-cli globally:
   # https://stackoverflow.com/a/21133609/5951529
-  - parallelshell "pip install pipenv" "npm install -g grunt-cli"
-  - parallelshell "pipenv install --dev" "npm install"
+  - pip install pipenv
+  - npm install -g grunt-cli
+  - pipenv install --dev
+  - npm install
 
 # Check, that virtual environment install inside project
 before_script:
