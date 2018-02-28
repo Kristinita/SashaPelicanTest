@@ -49,7 +49,7 @@ install:
   # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347267767
   # - npm install -g parallelshell
   - pip install --upgrade pip
-  # [WARNING] start command doesn't work:
+  # [WARNING] start command doesn't work without batch file:
   # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.31
   # https://github.com/vim/vim-win32-installer/blob/master/appveyor.yml
   - "%APPVEYOR_BUILD_FOLDER%/appveyor.bat"
