@@ -44,17 +44,13 @@ install:
   - choco install nodejs -y
   # [WARNING] npm parallel doesn't work, example:
   # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.25/job/70x5h1qq2d6j8gyp
-  # [NOTE] Parallelshell works, but no time economy, compare:
-  # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347254717
-  # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347267767
-  # - npm install -g parallelshell
-  - pip install --upgrade pip
   # [WARNING] start command doesn't work without batch file:
   # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.31
+  # Project folder:
   # https://github.com/vim/vim-win32-installer/blob/master/appveyor.yml
   - "%APPVEYOR_BUILD_FOLDER%/ci/appveyor_install.bat"
 
-# Check, that virtual environment install inside project
+# Check, that virtual environment install inside project.
 before_build:
 
   # Get current working directory:
