@@ -30,6 +30,7 @@ before_install:
   - export PIPENV_IGNORE_VIRTUALENVS=1
 
 install:
+  - sudo apt-get install parallel
   - pip install --upgrade pip
   - npm install --global npm
   # Grunt tasks needs grunt-cli globally:
