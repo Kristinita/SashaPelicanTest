@@ -32,7 +32,6 @@ before_install:
 install:
   - pip install --upgrade pip
   - npm install --global npm
-  - npm install --global parallelshell
   # Grunt tasks needs grunt-cli globally:
   # https://stackoverflow.com/a/21133609/5951529
   - bash travis.sh
