@@ -33,7 +33,7 @@ install:
   - sudo apt-get install parallel
   # Grunt tasks needs grunt-cli globally:
   # https://stackoverflow.com/a/21133609/5951529
-  - bash ci/travis.sh
+  - bash ci/travis_install.sh
 
 # Check, that virtual environment install inside project
 before_script:
