@@ -31,7 +31,6 @@
     "grunt-contrib-stylus": "^1.2.0",
     "grunt-gulp": "^1.0.2",
     "grunt-htmltidy": "^0.2.2",
-    "grunt-image": "^4.1.0",
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-move": "0.0.5",
     "grunt-ngrok": "^0.2.2",
