@@ -1,19 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<script src="../../jquery.js"></script>
-	<script src="../iframeTest.js"></script>
-	<script>
-		var called = false,
-			error = false;
+  <head>
 
-		window.onerror = function() { error = true; };
+    <script src="../../jquery.js"></script>
+    <script src="../iframeTest.js"></script>
+    <script>
+                var called = false,
+                        error = false;
 
-		jQuery( window ).on( "beforeunload", function( event ) {
-			called = true;
-			return "maybe";
-		}).on( "load", function( event ) {
-			$( window ).triggerHandler( "beforeunload" );
-			startIframeTest( called && !error );
-		});
-	</script>
+                window.onerror = function() { error = true; };
+
+                jQuery( window ).on( "beforeunload", function( event ) {
+                        called = true;
+                        return "maybe";
+                }).on( "load", function( event ) {
+                        $( window ).triggerHandler( "beforeunload" );
+                        startIframeTest( called && !error );
+                });
+    </script>
+    <title></title>
+  </head>
+  <body>
+  </body>
 </html>

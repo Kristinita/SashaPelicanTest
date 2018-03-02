@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ruby Test</title>
+    <title>
+      Ruby Test
+    </title>
     <link href="../themes/css/blackboard.css" rel="stylesheet">
   </head>
   <body>
@@ -19,11 +21,11 @@ comment
 
 #string interpolation
 12.times do |x|
-  &quot;Chapter #{x+1}:&quot;
+  "Chapter #{x+1}:"
 end
 # Strings
-&#39;string&#39;
-&quot;string&quot;
+'string'
+"string"
 %q(string)
 %q[string]
 %q{string}
@@ -35,9 +37,9 @@ end
 %Q&lt;string&gt;
 %Q|string|
 
-foo(&#39;string&#39;, &#39;string&#39;)
+foo('string', 'string')
 
-&quot;unsupported\&quot;string&quot;
+"unsupported\"string"
 
 # Heredocs
 if true
@@ -62,8 +64,8 @@ end
 
 # Symbols
 :symbol
-:&#39;long symbol&#39;
-:&quot;long symbol&quot;
+:'long symbol'
+:"long symbol"
 
 # Regular Expressions
 /regex/xxx
@@ -103,13 +105,13 @@ $stderr.puts 3
 
 # Data Structures
 [:value]
-[&#39;value&#39;]
-{:key=&gt;&#39;value&#39;}
-{:key =&gt; &#39;value&#39;}
-{&#39;key&#39; =&gt; &#39;value&#39;}
-{key: &#39;value&#39;}
-foo(:key =&gt; &#39;value&#39;)
-foo(key: &#39;value&#39;)
+['value']
+{:key=&gt;'value'}
+{:key =&gt; 'value'}
+{'key' =&gt; 'value'}
+{key: 'value'}
+foo(:key =&gt; 'value')
+foo(key: 'value')
 
 # Classes, modules, etc.
 module Foo
@@ -118,7 +120,7 @@ module Foo
     def self.something
     begin
       1 + 1
-    rescue StandardError => e
+    rescue StandardError =&gt; e
       puts "Whoa buddy!"
     end
 
@@ -146,8 +148,8 @@ else
   raise "Epic Fail"
 end
 </code></pre>
-    <script src="../dist/rainbow.js"></script>
-    <script src="../src/language/generic.js"></script>
+    <script src="../dist/rainbow.js"></script> 
+    <script src="../src/language/generic.js"></script> 
     <script src="../src/language/ruby.js"></script>
   </body>
 </html>

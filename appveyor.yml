@@ -41,7 +41,6 @@ platform: x64
 # https://www.appveyor.com/docs/build-configuration/#build-pipeline
 install:
 
-  - choco install nodejs -y
   # [WARNING] npm parallel doesn't work, example:
   # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.25/job/70x5h1qq2d6j8gyp
   # [WARNING] start command doesn't work without batch file:

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<title>Syntax Highlighting</title>
-<link href="../themes/css/blackboard.css" rel="stylesheet" type="text/css" media="screen">
-<body>
-
-<pre>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Syntax Highlighting
+    </title>
+    <link href="../themes/css/blackboard.css" rel="stylesheet" type="text/css" media="screen">
+  </head>
+  <body>
+    <pre>
 <code data-language="c">
 /* variable names that match a keyword or type at the beginning */
 char charcoal;
@@ -18,8 +22,7 @@ void floater(int x, int y)
 }
 </code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="c">
 #include &lt;stdio.h&gt;
 #include &lt;stdarg.h&gt;
@@ -55,20 +58,20 @@ int main (int argc, char *argv[])
     ssize_t charCount;
 
     while ((opt = getopt(argc, argv, ":a")) != -1) {
-	switch (opt) {
-	case 'a':
-	    openFlags |= O_APPEND;
-	default:
-	    die("Unrecognized option");
-	}
+        switch (opt) {
+        case 'a':
+            openFlags |= O_APPEND;
+        default:
+            die("Unrecognized option");
+        }
     }
 
     outFD = open(argv[1], O_WRONLY);
-    while ((charCount = read(STDIN_FILENO, buf, BUF_SIZE) > 0)) {
-	if (charCount != write(STDOUT_FILENO, buf, BUF_SIZE))
-	    die("Couldn't write same number of bytes to stdout");
-	if (charCount != write(outFD, buf, BUF_SIZE))
-	    die("Couldn't write same number of bytes to output file");
+    while ((charCount = read(STDIN_FILENO, buf, BUF_SIZE) &gt; 0)) {
+        if (charCount != write(STDOUT_FILENO, buf, BUF_SIZE))
+            die("Couldn't write same number of bytes to stdout");
+        if (charCount != write(outFD, buf, BUF_SIZE))
+            die("Couldn't write same number of bytes to output file");
     }
     close(outFD);
 
@@ -76,8 +79,7 @@ int main (int argc, char *argv[])
 }
 </code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="c">
 #ifndef type_h
 #define type_h
@@ -94,8 +96,7 @@ const char* type_id_name(int id);
 
 </code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="c">
 #include &lt;string.h&gt;
 #include &lt;stdio.h&gt;
@@ -116,10 +117,10 @@ int type_index = 0;
 /* Dynamically enter types into table */
 int type_find(const char* type) {
 
-  if (strlen(type) >= MAX_TYPE_LEN) {
+  if (strlen(type) &gt;= MAX_TYPE_LEN) {
     error("Type name %s is too long to index into type table.", type);
   }
-  if (type_index >= MAX_NUM_TYPES) {
+  if (type_index &gt;= MAX_NUM_TYPES) {
     error("Too many types in type table already. Cannot add %s.", type);
   }
 
@@ -142,8 +143,7 @@ const char* type_id_name(int id) {
 }
 </code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="c">
 #ifndef sound_h
 #define sound_h
@@ -161,8 +161,7 @@ void sound_delete(sound* s);
 #endif
 </code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="c">
 #include "error.h"
 
@@ -182,11 +181,11 @@ sound* wav_load_file(char* filename) {
 
   SDL_AudioSpec spec;
 
-  if( SDL_LoadWAV(filename, &amp;spec, (Uint8**)&amp;s->data, (Uint32*)&amp;s->length) == NULL) {
+  if( SDL_LoadWAV(filename, &amp;spec, (Uint8**)&amp;s-&gt;data, (Uint32*)&amp;s-&gt;length) == NULL) {
     error("Unable to load sound file %s", filename);
   }
 
-  if ((spec.format != AUDIO_S16LSB) &amp;&amp;
+  if ((spec.format != AUDIO_S16LSB) &amp;&
       (spec.format != AUDIO_S16MSB)) {
     error("Unsupported sound format for file %s, id %i.", filename, spec.format);
   }
@@ -204,8 +203,8 @@ void sound_delete(sound* s) {
 }
 </code>
 </pre>
-
-    <script src="../dist/rainbow.js"></script>
-    <script src="../src/language/generic.js"></script>
+    <script src="../dist/rainbow.js"></script> 
+    <script src="../src/language/generic.js"></script> 
     <script src="../src/language/c.js"></script>
-</body>
+  </body>
+</html>

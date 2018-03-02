@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<title>Syntax Highlighting</title>
-<link href="../themes/css/monokai.css" rel="stylesheet" type="text/css" media="screen">
-<body>
-
-<!-- <pre>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Syntax Highlighting
+    </title>
+    <link href="../themes/css/monokai.css" rel="stylesheet" type="text/css" media="screen">
+  </head>
+  <body>
+    <!-- <pre>
 <code data-language="php">// this is some sample php code
 $i = 0;
 for ($i = 0; $i &lt; 25; ++$i) {
@@ -29,8 +33,7 @@ foreach ($fruits as $key => $value) {
     echo $value;
 }</code>
 </pre> -->
-
-<pre>
+    <pre>
 <code data-language="php">&lt;?php
 namespace Sonic;
 
@@ -128,13 +131,13 @@ final class App
      * @var array
      */
     protected $_settings = array(
-        self::MODE => self::WEB,
-        self::AUTOLOAD => false,
-        self::CONFIG_FILE => 'ini',
-        self::DEVS => array('dev', 'development'),
-        self::DISABLE_APC => false,
-        self::TURBO => false,
-        self::EXTENSIONS_LOADED => array()
+        self::MODE =&gt; self::WEB,
+        self::AUTOLOAD =&gt; false,
+        self::CONFIG_FILE =&gt; 'ini',
+        self::DEVS =&gt; array('dev', 'development'),
+        self::DISABLE_APC =&gt; false,
+        self::TURBO =&gt; false,
+        self::EXTENSIONS_LOADED =&gt; array()
     );
 
     /**
@@ -152,7 +155,7 @@ final class App
      */
     public function __call($name, $args)
     {
-        return $this->callIfExists($name, $args, __CLASS__, get_class($this));
+        return $this-&gt;callIfExists($name, $args, __CLASS__, get_class($this));
     }
 
     /**
@@ -163,7 +166,7 @@ final class App
      */
     public static function __callStatic($name, $args)
     {
-        return self::getInstance()->callIfExists($name, $args, __CLASS__, get_called_class(), true);
+        return self::getInstance()-&gt;callIfExists($name, $args, __CLASS__, get_called_class(), true);
     }
 
     /**
@@ -176,10 +179,10 @@ final class App
      */
     public function callIfExists($name, $args, $class, $class_name, $static = false)
     {
-        if (count($this->getSetting(self::EXTENSIONS_LOADED)) == 0) {
+        if (count($this-&gt;getSetting(self::EXTENSIONS_LOADED)) == 0) {
             return trigger_error('Call to undefined method ' . $class_name . '::' . $name . '()', E_USER_ERROR);
         }
-        $this->includeFile('Sonic/Extension/Transformation.php');
+        $this-&gt;includeFile('Sonic/Extension/Transformation.php');
         $method = $static ? 'callStatic' : 'call';
         return Extension\Transformation::$method($name, $args, $class, $class_name);
     }
@@ -206,7 +209,7 @@ final class App
     public function autoloader($class_name)
     {
         $path = str_replace('\\', '/', $class_name) . '.php';
-        return $this->includeFile($path);
+        return $this-&gt;includeFile($path);
     }
 
     /**
@@ -220,14 +223,14 @@ final class App
         // replace / with directory separator for windows
         $path = str_replace('/', DIRECTORY_SEPARATOR, $path);
 
-        if (isset($this->_included[$path])) {
+        if (isset($this-&gt;_included[$path])) {
             return false;
         }
 
         // if the path starts with / or C: then it is an absolute path
         // otherwise pull it from the libs directory
-        include $path[0] == '/' || $path[1] == ':' ? $path : $this->getPath('libs') . DIRECTORY_SEPARATOR . $path;
-        $this->_included[$path] = true;
+        include $path[0] == '/' || $path[1] == ':' ? $path : $this-&gt;getPath('libs') . DIRECTORY_SEPARATOR . $path;
+        $this-&gt;_included[$path] = true;
 
         return true;
     }
@@ -250,7 +253,7 @@ final class App
      */
     public function addSetting($key, $value)
     {
-        $this->_settings[$key] = $value;
+        $this-&gt;_settings[$key] = $value;
     }
 
     /**
@@ -261,11 +264,11 @@ final class App
      */
     public function getSetting($name)
     {
-        if (!isset($this->_settings[$name])) {
+        if (!isset($this-&gt;_settings[$name])) {
             return null;
         }
 
-        return $this->_settings[$name];
+        return $this-&gt;_settings[$name];
     }
 
     /**
@@ -282,39 +285,39 @@ final class App
     public static function getConfig($path = null)
     {
         $app = self::getInstance();
-        $environment = $app->getEnvironment();
+        $environment = $app-&gt;getEnvironment();
 
-        $type = $app->getSetting(self::CONFIG_FILE);
+        $type = $app-&gt;getSetting(self::CONFIG_FILE);
 
         // get the config path
         if ($path === null) {
-            $path = $app->getPath('configs') . '/app.' . $type;
+            $path = $app-&gt;getPath('configs') . '/app.' . $type;
         }
 
         // cache key
         $cache_key =  'config_' . $path . '_' . $environment;
 
         // if the config is in instance cache return it
-        if (isset($app->_configs[$cache_key])) {
-            return $app->_configs[$cache_key];
+        if (isset($app-&gt;_configs[$cache_key])) {
+            return $app-&gt;_configs[$cache_key];
         }
 
         // we need to load the util and config object before it fetches it from APC
-        $app->includeFile('Sonic/Util.php');
-        $app->includeFile('Sonic/Config.php');
+        $app-&gt;includeFile('Sonic/Util.php');
+        $app-&gt;includeFile('Sonic/Config.php');
 
         // if we are not dev let's try to grab it from APC
-        if (!self::isDev() &amp;&amp; !$app->getSetting(self::DISABLE_APC) &amp;&amp; ($config = apc_fetch($cache_key))) {
-            $app->_configs[$cache_key] = $config;
+        if (!self::isDev() &amp;& !$app-&gt;getSetting(self::DISABLE_APC) &amp;& ($config = apc_fetch($cache_key))) {
+            $app-&gt;_configs[$cache_key] = $config;
             return $config;
         }
 
         // if we have gotten here then that means the config exists so we
         // now need to get the environment name and load the config
         $config = new Config($path, $environment, $type);
-        $app->_configs[$cache_key] = $config;
+        $app-&gt;_configs[$cache_key] = $config;
 
-        if (!self::isDev() &amp;&amp; !$app->getSetting(self::DISABLE_APC)) {
+        if (!self::isDev() &amp;& !$app-&gt;getSetting(self::DISABLE_APC)) {
             apc_store($cache_key, $config, Util::toSeconds('24 hours'));
         }
 
@@ -329,7 +332,7 @@ final class App
     public static function isDev()
     {
         $app = self::getInstance();
-        return in_array($app->getEnvironment(), $app->getSetting(self::DEVS));
+        return in_array($app-&gt;getEnvironment(), $app-&gt;getSetting(self::DEVS));
     }
 
     /**
@@ -339,12 +342,12 @@ final class App
      */
     public function getEnvironment()
     {
-        if ($env = $this->getSetting(self::ENVIRONMENT)) {
+        if ($env = $this-&gt;getSetting(self::ENVIRONMENT)) {
             return $env;
         }
 
         if ($env = getenv('ENVIRONMENT')) {
-            $this->addSetting(self::ENVIRONMENT, $env);
+            $this-&gt;addSetting(self::ENVIRONMENT, $env);
             return $env;
         }
 
@@ -358,10 +361,10 @@ final class App
      */
     public function getRequest()
     {
-        if (!$this->_request) {
-            $this->_request = new Request();
+        if (!$this-&gt;_request) {
+            $this-&gt;_request = new Request();
         }
-        return $this->_request;
+        return $this-&gt;_request;
     }
 
     /**
@@ -372,7 +375,7 @@ final class App
      */
     public function setBasePath($path)
     {
-        $this->_base_path = $path;
+        $this-&gt;_base_path = $path;
     }
 
     /**
@@ -382,8 +385,8 @@ final class App
      */
     public function getBasePath()
     {
-        if ($this->_base_path) {
-            return $this->_base_path;
+        if ($this-&gt;_base_path) {
+            return $this-&gt;_base_path;
         }
 
         throw new \Exception('base path must be set before App::start() is called');
@@ -398,7 +401,7 @@ final class App
      */
     public function setPath($dir, $path)
     {
-        $this->_paths['path_' . $dir] = $path;
+        $this-&gt;_paths['path_' . $dir] = $path;
     }
 
     /**
@@ -411,18 +414,18 @@ final class App
     {
         $cache_key =  'path_' . $dir;
 
-        if (isset($this->_paths[$cache_key])) {
-            return $this->_paths[$cache_key];
+        if (isset($this-&gt;_paths[$cache_key])) {
+            return $this-&gt;_paths[$cache_key];
         }
 
-        $base_path = $this->getBasePath();
+        $base_path = $this-&gt;getBasePath();
 
         if ($dir !== null) {
             $base_path .= DIRECTORY_SEPARATOR . $dir;
         }
 
-        $this->_paths[$cache_key] = $base_path;
-        return $this->_paths[$cache_key];
+        $this-&gt;_paths[$cache_key] = $base_path;
+        return $this-&gt;_paths[$cache_key];
     }
 
     /**
@@ -432,7 +435,7 @@ final class App
      */
     public function disableLayout()
     {
-        $this->_layout_processed = true;
+        $this-&gt;_layout_processed = true;
     }
 
     /**
@@ -446,18 +449,18 @@ final class App
         $name = strtolower($name);
 
         // controller has not been instantiated yet
-        if (!isset($this->_controllers[$name])) {
-            $path = $this->getPath('controllers') . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
+        if (!isset($this-&gt;_controllers[$name])) {
+            $path = $this-&gt;getPath('controllers') . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
             $success = include $path;
             if (!$success) {
                 throw new Exception('controller does not exist at path: ' . $path);
             }
             $class_name = '\Controllers\\' . $name;
-            $this->_controllers[$name] = new $class_name;
-            $this->_controllers[$name]->name($name);
+            $this-&gt;_controllers[$name] = new $class_name;
+            $this-&gt;_controllers[$name]-&gt;name($name);
         }
 
-        return $this->_controllers[$name];
+        return $this-&gt;_controllers[$name];
     }
 
     /**
@@ -472,33 +475,33 @@ final class App
      */
     protected function _runController($controller_name, $action, $args = array(), $json = false, $id = null)
     {
-        $this->getRequest()->addParams($args);
+        $this-&gt;getRequest()-&gt;addParams($args);
 
-        $controller = $this->getController($controller_name);
-        $controller->setView($action, false);
+        $controller = $this-&gt;getController($controller_name);
+        $controller-&gt;setView($action, false);
 
         // if we are requesting JSON that means this is being processed from the turbo queue
         // if we are not in turbo mode then we run the action normally
-        $can_run = $json || !$this->getSetting(self::TURBO);
+        $can_run = $json || !$this-&gt;getSetting(self::TURBO);
 
-        if ($this->_delegate) {
-            $this->_delegate->actionWasCalled($controller, $action, $args);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;actionWasCalled($controller, $action, $args);
         }
 
         if ($can_run) {
-            $this->_runAction($controller, $action, $args);
+            $this-&gt;_runAction($controller, $action, $args);
         }
 
         $view = null;
-        if ($controller->hasView()) {
-            $view = $controller->getView();
-            $view->setAction($action);
-            $view->addVars($args);
+        if ($controller-&gt;hasView()) {
+            $view = $controller-&gt;getView();
+            $view-&gt;setAction($action);
+            $view-&gt;addVars($args);
         }
 
         // process the layout if we can
         // this takes care of handling this view
-        if ($this->_processLayout($controller, $view, $args)) {
+        if ($this-&gt;_processLayout($controller, $view, $args)) {
             return;
         }
 
@@ -506,15 +509,15 @@ final class App
             return;
         }
 
-        if ($this->_delegate) {
-            $this->_delegate->viewStartedRendering($view, $json);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;viewStartedRendering($view, $json);
         }
 
         // output the view contents
-        $view->output($json, $id);
+        $view-&gt;output($json, $id);
 
-        if ($this->_delegate) {
-            $this->_delegate->viewFinishedRendering($view, $json);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;viewFinishedRendering($view, $json);
         }
     }
 
@@ -529,34 +532,34 @@ final class App
     protected function _processLayout(Controller $controller, View $view = null, $args)
     {
         // if the layout was already processed ignore this call
-        if ($this->_layout_processed) {
+        if ($this-&gt;_layout_processed) {
             return false;
         }
 
         // if the controller doesn't have a layout ignore this call
-        if (!$controller->hasLayout()) {
+        if (!$controller-&gt;hasLayout()) {
             return false;
         }
 
         // if this is not the first controller and not an exception, ignore
-        if (count($this->_controllers) != 1 &amp;&amp; !isset($args['exception'])) {
+        if (count($this-&gt;_controllers) != 1 &amp;& !isset($args['exception'])) {
             return false;
         }
 
         // process the layout!
-        $this->_layout_processed = true;
-        $layout = $controller->getLayout();
+        $this-&gt;_layout_processed = true;
+        $layout = $controller-&gt;getLayout();
 
-        $layout->topView($view ?: new View);
+        $layout-&gt;topView($view ?: new View);
 
-        if ($this->_delegate) {
-            $this->_delegate->layoutStartedRendering($layout);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;layoutStartedRendering($layout);
         }
 
-        $layout->output();
+        $layout-&gt;output();
 
-        if ($this->_delegate) {
-            $this->_delegate->layoutFinishedRendering($layout);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;layoutFinishedRendering($layout);
         }
 
         return true;
@@ -571,15 +574,15 @@ final class App
      */
     protected function _runAction(Controller $controller, $action, array $args = array())
     {
-        if ($this->_delegate) {
-            $this->_delegate->actionStartedRunning($controller, $action, $args);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;actionStartedRunning($controller, $action, $args);
         }
 
-        $controller->$action();
-        $controller->actionComplete($action);
+        $controller-&gt;$action();
+        $controller-&gt;actionComplete($action);
 
-        if ($this->_delegate) {
-            $this->_delegate->actionFinishedRunning($controller, $action, $args);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;actionFinishedRunning($controller, $action, $args);
         }
     }
 
@@ -595,9 +598,9 @@ final class App
     public function runController($controller_name, $action, $args = array(), $json = false)
     {
         try {
-            $this->_runController($controller_name, $action, $args, $json);
+            $this-&gt;_runController($controller_name, $action, $args, $json);
         } catch (\Exception $e) {
-            $this->handleException($e, $controller_name, $action);
+            $this-&gt;handleException($e, $controller_name, $action);
             return;
         }
     }
@@ -613,7 +616,7 @@ final class App
      */
     public function queueView($controller, $name)
     {
-        $this->_queued[] = array($controller, $name);
+        $this-&gt;_queued[] = array($controller, $name);
     }
 
     /**
@@ -623,14 +626,14 @@ final class App
      */
     public function processViewQueue()
     {
-        if (!$this->getSetting(self::TURBO)) {
+        if (!$this-&gt;getSetting(self::TURBO)) {
             return;
         }
 
-        while (count($this->_queued)) {
-            foreach ($this->_queued as $key => $queue) {
-                $this->runController($queue[0], $queue[1], array(), true);
-                unset($this->_queued[$key]);
+        while (count($this-&gt;_queued)) {
+            foreach ($this-&gt;_queued as $key =&gt; $queue) {
+                $this-&gt;runController($queue[0], $queue[1], array(), true);
+                unset($this-&gt;_queued[$key]);
             }
         }
     }
@@ -645,18 +648,18 @@ final class App
      */
     public function handleException(\Exception $e, $controller = null, $action = null)
     {
-        if ($this->_delegate) {
-            $this->_delegate->appCaughtException($e, $controller, $action);
+        if ($this-&gt;_delegate) {
+            $this-&gt;_delegate-&gt;appCaughtException($e, $controller, $action);
         }
 
         // turn other exceptions into sonic exceptions
         if (!$e instanceof Exception) {
-            $e = new Exception($e->getMessage(), Exception::INTERNAL_SERVER_ERROR, $e);
+            $e = new Exception($e-&gt;getMessage(), Exception::INTERNAL_SERVER_ERROR, $e);
         }
 
         // only set the http code if output hasn't started
         if (!headers_sent()) {
-            header($e->getHttpCode());
+            header($e-&gt;getHttpCode());
         }
 
         $json = false;
@@ -666,7 +669,7 @@ final class App
         // same div created before the exception was triggered.  this means
         // we have to get the id based on the controller and action that the
         // exception came from
-        if ($this->getSetting(self::TURBO) &amp;&amp; $this->_layout_processed) {
+        if ($this-&gt;getSetting(self::TURBO) &amp;& $this-&gt;_layout_processed) {
             $json = true;
             $id = View::generateId($controller, $action);
         }
@@ -677,21 +680,21 @@ final class App
         // because we were not able to match any routes.  in all other cases
         // we can get the initial controller and action to determine if it has
         // completed
-        if ($controller !== null &amp;&amp; $action !== null) {
-            $req = $this->getRequest();
-            $first_controller = $req->getControllerName();
-            $first_action = $req->getAction();
-            $completed = $this->getController($first_controller)->hasCompleted($first_action);
+        if ($controller !== null &amp;& $action !== null) {
+            $req = $this-&gt;getRequest();
+            $first_controller = $req-&gt;getControllerName();
+            $first_action = $req-&gt;getAction();
+            $completed = $this-&gt;getController($first_controller)-&gt;hasCompleted($first_action);
         }
 
         $args = array(
-            'exception' => $e,
-            'top_level_exception' => !$completed,
-            'from_controller' => $controller,
-            'from_action' => $action
+            'exception' =&gt; $e,
+            'top_level_exception' =&gt; !$completed,
+            'from_controller' =&gt; $controller,
+            'from_action' =&gt; $action
         );
 
-        return $this->_runController('main', 'error', $args, $json, $id);
+        return $this-&gt;_runController('main', 'error', $args, $json, $id);
     }
 
     /**
@@ -701,7 +704,7 @@ final class App
      */
     protected function _robotnikWins()
     {
-        if ($this->getRequest()->isAjax() || isset($_COOKIE['noturbo']) || isset($_COOKIE['bot'])) {
+        if ($this-&gt;getRequest()-&gt;isAjax() || isset($_COOKIE['noturbo']) || isset($_COOKIE['bot'])) {
             return true;
         }
 
@@ -710,7 +713,7 @@ final class App
             return true;
         }
 
-        if (isset($_SERVER['HTTP_USER_AGENT']) &amp;&amp; strpos($_SERVER['HTTP_USER_AGENT'], 'Googlebot') !== false) {
+        if (isset($_SERVER['HTTP_USER_AGENT']) &amp;& strpos($_SERVER['HTTP_USER_AGENT'], 'Googlebot') !== false) {
             setcookie('bot', true, time() + 86400);
             return true;
         }
@@ -726,8 +729,8 @@ final class App
      */
     public function setDelegate($delegate)
     {
-        $this->includeFile('Sonic/App/Delegate.php');
-        $this->autoloader($delegate);
+        $this-&gt;includeFile('Sonic/App/Delegate.php');
+        $this-&gt;autoloader($delegate);
 
         $delegate = new $delegate;
 
@@ -735,8 +738,8 @@ final class App
             throw new \Exception('app delegate of class ' . get_class($delegate) . ' must be instance of \Sonic\App\Delegate');
         }
 
-        $this->_delegate = $delegate;
-        $this->_delegate->setApp($this);
+        $this-&gt;_delegate = $delegate;
+        $this-&gt;_delegate-&gt;setApp($this);
         return $this;
     }
 
@@ -749,20 +752,20 @@ final class App
     public function loadExtension($name)
     {
         // if this is already loaded don't do anything
-        if ($this->extensionLoaded($name)) {
+        if ($this-&gt;extensionLoaded($name)) {
             return $this;
         }
 
         $name = strtolower($name);
 
         // first grab the extension installation data
-        $extensions = $this->getSetting(self::EXTENSION_DATA);
+        $extensions = $this-&gt;getSetting(self::EXTENSION_DATA);
         if (!$extensions) {
-            $path = $this->getPath('extensions/installed.json');
+            $path = $this-&gt;getPath('extensions/installed.json');
 
             if (file_exists($path)) {
                 $extensions = json_decode(file_get_contents($path), true);
-                $this->addSetting(self::EXTENSION_DATA, $extensions);
+                $this-&gt;addSetting(self::EXTENSION_DATA, $extensions);
             }
         }
 
@@ -775,21 +778,21 @@ final class App
 
         // create a delegate object if this extension has one
         $delegate = null;
-        if (isset($data['delegate_path']) &amp;&amp; isset($data['delegate'])) {
-            $this->includeFile('Sonic/Extension/Delegate.php');
-            $this->includeFile($this->getPath($data['delegate_path']));
+        if (isset($data['delegate_path']) &amp;& isset($data['delegate'])) {
+            $this-&gt;includeFile('Sonic/Extension/Delegate.php');
+            $this-&gt;includeFile($this-&gt;getPath($data['delegate_path']));
             $delegate = new $data['delegate'];
         }
 
         if ($delegate) {
-            $delegate->extensionStartedLoading();
+            $delegate-&gt;extensionStartedLoading();
         }
 
-        $base_path = $this->getPath();
+        $base_path = $this-&gt;getPath();
 
         $core = 'extensions/' . $name . '/Core.php';
-        $has_core = isset($data['has_core']) &amp;&amp; $data['has_core'];
-        $dev = isset($data['dev']) &amp;&amp; $data['dev'];
+        $has_core = isset($data['has_core']) &amp;& $data['has_core'];
+        $dev = isset($data['dev']) &amp;& $data['dev'];
 
         foreach ($data['files'] as $file) {
 
@@ -798,11 +801,11 @@ final class App
             $lib_file = strpos($file, 'libs') === 0;
 
             // don't load libs files unless the extension says to explicitly
-            if ($lib_file &amp;&amp; !$data['load_libs']) {
+            if ($lib_file &amp;& !$data['load_libs']) {
                 continue;
             }
 
-            if (strpos($file, 'extensions') !== 0 &amp;&amp; !$lib_file) {
+            if (strpos($file, 'extensions') !== 0 &amp;& !$lib_file) {
                 continue;
             }
 
@@ -812,28 +815,28 @@ final class App
             }
 
             // skip core in dev mode
-            if ($dev &amp;&amp; $file == $core) {
+            if ($dev &amp;& $file == $core) {
                 continue;
             }
 
             // if this is a file that is not in libs and not core then skip it
-            if (!$dev &amp;&amp; !$lib_file &amp;&amp; $has_core &amp;&amp; $file != $core) {
+            if (!$dev &amp;& !$lib_file &amp;& $has_core &amp;& $file != $core) {
                 continue;
             }
 
-            $this->includeFile($base_path . '/' . $file);
+            $this-&gt;includeFile($base_path . '/' . $file);
 
             if ($delegate) {
-                $delegate->extensionLoadedFile($file);
+                $delegate-&gt;extensionLoadedFile($file);
             }
         }
 
-        $loaded = $this->getSetting(self::EXTENSIONS_LOADED);
+        $loaded = $this-&gt;getSetting(self::EXTENSIONS_LOADED);
         $loaded[] = $name;
-        $this->addSetting(self::EXTENSIONS_LOADED, $loaded);
+        $this-&gt;addSetting(self::EXTENSIONS_LOADED, $loaded);
 
         if ($delegate) {
-            $delegate->extensionFinishedLoading();
+            $delegate-&gt;extensionFinishedLoading();
         }
 
         return $this;
@@ -847,7 +850,7 @@ final class App
      */
     public function extensionLoaded($name)
     {
-        $loaded = $this->getSetting(self::EXTENSIONS_LOADED);
+        $loaded = $this-&gt;getSetting(self::EXTENSIONS_LOADED);
         return in_array(strtolower($name), $loaded);
     }
 
@@ -859,7 +862,7 @@ final class App
      */
     public function extension($name)
     {
-        $this->includeFile('Sonic/Extension/Helper.php');
+        $this-&gt;includeFile('Sonic/Extension/Helper.php');
         return Extension\Helper::forExtension($name);
     }
 
@@ -871,13 +874,13 @@ final class App
      */
     public function start($mode = self::WEB)
     {
-        $lib = $this->getPath('libs') . DIRECTORY_SEPARATOR . 'Sonic' . DIRECTORY_SEPARATOR;
+        $lib = $this-&gt;getPath('libs') . DIRECTORY_SEPARATOR . 'Sonic' . DIRECTORY_SEPARATOR;
         try {
-            if ($this->_delegate) {
-                $this->_delegate->appStartedLoading($mode);
+            if ($this-&gt;_delegate) {
+                $this-&gt;_delegate-&gt;appStartedLoading($mode);
             }
 
-            $this->addSetting(self::MODE, $mode);
+            $this-&gt;addSetting(self::MODE, $mode);
 
             require_once $lib . 'Exception.php';
             require_once $lib . 'Request.php';
@@ -886,12 +889,12 @@ final class App
             require_once $lib . 'View.php';
             require_once $lib . 'Layout.php';
 
-            if ($this->getSetting(self::AUTOLOAD)) {
-                $this->autoload();
+            if ($this-&gt;getSetting(self::AUTOLOAD)) {
+                $this-&gt;autoload();
             }
 
-            if ($this->_delegate) {
-                $this->_delegate->appFinishedLoading();
+            if ($this-&gt;_delegate) {
+                $this-&gt;_delegate-&gt;appFinishedLoading();
             }
 
             // if we are calling this app from command line then all we want to do
@@ -900,33 +903,33 @@ final class App
                 return;
             }
 
-            if ($this->getSetting(self::TURBO) &amp;&amp; $this->_robotnikWins()) {
-                $this->addSetting(self::TURBO, false);
+            if ($this-&gt;getSetting(self::TURBO) &amp;& $this-&gt;_robotnikWins()) {
+                $this-&gt;addSetting(self::TURBO, false);
             }
 
             // try to get the controller and action
             // if an exception is thrown that means the page requested does not exist
-            $controller = $this->getRequest()->getControllerName();
-            $action = $this->getRequest()->getAction();
+            $controller = $this-&gt;getRequest()-&gt;getControllerName();
+            $action = $this-&gt;getRequest()-&gt;getAction();
 
-            if ($this->_delegate) {
-                $this->_delegate->appStartedRunning();
+            if ($this-&gt;_delegate) {
+                $this-&gt;_delegate-&gt;appStartedRunning();
             }
 
-            $this->runController($controller, $action);
+            $this-&gt;runController($controller, $action);
 
-            if ($this->_delegate) {
-                $this->_delegate->appFinishedRunning();
+            if ($this-&gt;_delegate) {
+                $this-&gt;_delegate-&gt;appFinishedRunning();
             }
         } catch (\Exception $e) {
-            $this->handleException($e);
+            $this-&gt;handleException($e);
         }
     }
 }
 </code>
 </pre>
-
-    <script src="../dist/rainbow.js"></script>
-    <script src="../src/language/generic.js"></script>
+    <script src="../dist/rainbow.js"></script> 
+    <script src="../src/language/generic.js"></script> 
     <script src="../src/language/php.js"></script>
-</body>
+  </body>
+</html>

@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<title>Syntax Highlighting</title>
-<link href="../themes/css/monokai.css" rel="stylesheet" type="text/css" media="screen">
-<body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Syntax Highlighting
+    </title>
+    <link href="../themes/css/monokai.css" rel="stylesheet" type="text/css" media="screen">
+  </head>
+  <body>
     <pre><code class="language-js">/*
  * This is some sample code to illustrate how things look!
  */
@@ -14,7 +19,7 @@ export let blah = 123;
 var somethingElse = false;
 
 function test() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) =&gt; {
         resolve();
     });
 }
@@ -40,7 +45,6 @@ class TaylorSwift extends Musician {
 }
 
 export default Paul;</code></pre>
-
     <pre data-language="javascript">
 <code>/**
  * test function
@@ -66,8 +70,7 @@ $(document).ready(function() {
     });
 });
 </code></pre>
-
-<pre>
+    <pre>
 <code data-language="javascript">window.Rainbow = {
     whatever: function(param) {
 
@@ -78,8 +81,7 @@ $(document).ready(function() {
     }
 };</code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="javascript">window.Rainbow = window.Rainbow || {};
 
 Rainbow.extend('javascript', [
@@ -89,8 +91,7 @@ Rainbow.extend('javascript', [
     }
 ]);</code>
 </pre>
-
-<pre>
+    <pre>
 <code data-language="javascript">/**
  * cross browser get attribute for an element
  *
@@ -101,7 +102,7 @@ Rainbow.extend('javascript', [
  * @returns {string}
  */
 function _attr(el, attr) {
-    var result = (el.getAttribute &amp;&amp; el.getAttribute(attr)) || null;
+    var result = (el.getAttribute &amp;& el.getAttribute(attr)) || null;
 
     if (!result) {
         var attrs = el.attributes,
@@ -118,8 +119,8 @@ function _attr(el, attr) {
     return result;
 }</code>
 </pre>
-
-    <script src="../dist/rainbow.js"></script>
-    <script src="../src/language/generic.js"></script>
+    <script src="../dist/rainbow.js"></script> 
+    <script src="../src/language/generic.js"></script> 
     <script src="../src/language/javascript.js"></script>
-</body>
+  </body>
+</html>
