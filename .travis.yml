@@ -39,7 +39,7 @@ install:
   - sudo apt-get install parallel
   # Install on Ubuntu
   - wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb
-  - sudo dpkg -i tidy-5.2.0-64bit.deb
+  - sudo dpkg -i tidy-5.4.0-64bit.deb
   - bash ci/travis_install.sh
 
 # Check, that virtual environment install inside project.
