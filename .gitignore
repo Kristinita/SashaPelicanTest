@@ -4,6 +4,8 @@
 # .gitignore boilerplates
 # https://github.com/theadamlt/Sublime-Gitignore
 
+/output
+
 ###Python###
 
 # Byte-compiled / optimized / DLL files
