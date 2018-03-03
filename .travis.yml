@@ -37,6 +37,7 @@ install:
   # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347254717
   # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347267767
   - sudo apt-get install parallel
+  - sudo apt install tidy
   - bash ci/travis_install.sh
 
 # Check, that virtual environment install inside project.
