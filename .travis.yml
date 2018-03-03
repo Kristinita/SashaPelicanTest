@@ -37,7 +37,9 @@ install:
   # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347254717
   # https://travis-ci.org/Kristinita/SashaPelicanTest/jobs/347267767
   - sudo apt-get install parallel
-  - sudo apt install tidy
+  # Install on Ubuntu
+  - wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb
+  - sudo dpkg -i tidy-5.2.0-64bit.deb
   - bash ci/travis_install.sh
 
 # Check, that virtual environment install inside project.
@@ -49,4 +51,4 @@ before_script:
 
 script:
   - grunt $GRUNT_COMMAND
-  - cd output && tidy -mq -utf8 -config ../tidy-config.txt **/*.html
+  - cd output && tidy -mq -config ../tidy-config.txt **/*.html
