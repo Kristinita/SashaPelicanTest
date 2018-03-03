@@ -57,4 +57,4 @@ before_script:
 
 script:
   - grunt $GRUNT_COMMAND
-  - cd output && ../grunt/tidy.bat
+  - cd output && ../grunt/tidy.sh
