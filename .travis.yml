@@ -59,4 +59,4 @@ script:
   - grunt $GRUNT_COMMAND
   # Fix permission denied:
   # https://stackoverflow.com/a/46818913/5951529
-  - grunt shell:htmltidy --verbose
+  - bash grunt/tidy.sh
