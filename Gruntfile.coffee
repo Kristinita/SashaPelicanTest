@@ -78,7 +78,7 @@ module.exports = (grunt) ->
 				options:
 				    stderr: false
 				    failOnError: true
-				command: 'cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
+				command: 'cmd cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
 
 		##################################
 		## Move files to another folder ##
