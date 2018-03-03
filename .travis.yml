@@ -44,6 +44,8 @@ install:
   - cmake ../..
   - cmake --build . --config Release
   - sudo make install
+  - echo $PWD
+  - cd ..
   - bash ci/travis_install.sh
 
 # Check, that virtual environment install inside project.
