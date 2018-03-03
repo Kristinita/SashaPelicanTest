@@ -7,8 +7,8 @@
 ## Loading Grunt plugins ##
 ###########################
 
-gulp = require('gulp')
-htmltidy = require('gulp-htmltidy')
+# gulp = require('gulp')
+# htmltidy = require('gulp-htmltidy')
 
 module.exports = (grunt) ->
 	# grunt.loadNpmTasks 'grunt-shell'
@@ -56,14 +56,14 @@ module.exports = (grunt) ->
 					dest: 'output/PostHTML'
 				]
 
-		# Base parameter — https://stackoverflow.com/a/44337370/5951529
-		gulp:
-			gulptidy:
-				gulp.src('output/**/*.html', base: ".")
-				.pipe(htmltidy(
-					doctype: 'html5'
-					indent: true
-					wrap: 0)).pipe gulp.dest('./')
+		# # Base parameter — https://stackoverflow.com/a/44337370/5951529
+		# gulp:
+		# 	gulptidy:
+		# 		gulp.src('output/**/*.html', base: ".")
+		# 		.pipe(htmltidy(
+		# 			doctype: 'html5'
+		# 			indent: true
+		# 			wrap: 0)).pipe gulp.dest('./')
 
 		###################
 		## Pelican build ##
