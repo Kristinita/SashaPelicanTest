@@ -74,7 +74,11 @@ module.exports = (grunt) ->
 		shell:
 			generate: command: 'pipenv run pelican content -s pelicanconf.py'
 			deploy: command: 'pipenv run pelican content -s publishconf.py'
-			htmltidy: command: 'cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
+			htmltidy:
+				options:
+				    stderr: false
+				    failOnError: true
+				command: 'cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
 
 		##################################
 		## Move files to another folder ##
@@ -281,27 +285,27 @@ module.exports = (grunt) ->
 		concurrent:
 			target1: ['clean']
 
-		###################
-		##  Browsersync  ##
-		###################
-		# Live Reloading
-		# https://github.com/BrowserSync/grunt-browser-sync
-		browserSync:
-			bsFiles:
-				src : ['output/theme/css/**/*.css', 'output/theme/js/**/*.js']
-			options:
-				server:
-					baseDir: "../"
-				plugins: [
-					## HTML-injector plugin
-					## That HTML don't refresh, if I change HTML file:
-					## https://github.com/shakyshane/html-injector
-					## JavaScript needs refresh, see
-					## https://stackoverflow.com/q/30762114/5951529
-					module: "bs-html-injector"
-					options:
-						files: "output/**/*.html"
-					]
+		# ###################
+		# ##  Browsersync  ##
+		# ###################
+		# # Live Reloading
+		# # https://github.com/BrowserSync/grunt-browser-sync
+		# browserSync:
+		# 	bsFiles:
+		# 		src : ['output/theme/css/**/*.css', 'output/theme/js/**/*.js']
+		# 	options:
+		# 		server:
+		# 			baseDir: "../"
+		# 		plugins: [
+		# 			## HTML-injector plugin
+		# 			## That HTML don't refresh, if I change HTML file:
+		# 			## https://github.com/shakyshane/html-injector
+		# 			## JavaScript needs refresh, see
+		# 			## https://stackoverflow.com/q/30762114/5951529
+		# 			module: "bs-html-injector"
+		# 			options:
+		# 				files: "output/**/*.html"
+		# 			]
 
 		ngrok:
 			options:
