@@ -57,4 +57,7 @@ before_script:
 
 script:
   - grunt $GRUNT_COMMAND
-  - cd output && bash ../grunt/tidy.sh
+  # Fix permission denied:
+  # https://stackoverflow.com/a/46818913/5951529
+  - cd output
+  - grunt shell:htmltidy
