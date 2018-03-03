@@ -61,5 +61,4 @@ build_script:
 
   - set PYTHONIOENCODING=utf-8
   - grunt %GRUNT_COMMAND%
-  - cd output
   - grunt shell:htmltidy

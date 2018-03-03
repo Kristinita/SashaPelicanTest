@@ -75,10 +75,15 @@ module.exports = (grunt) ->
 			generate: command: 'pipenv run pelican content -s pelicanconf.py'
 			deploy: command: 'pipenv run pelican content -s publishconf.py'
 			htmltidy:
-				options:
-				    stderr: false
-				    failOnError: true
-				command: 'cmd cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
+				# options:
+				#     stderr: false
+				#     failOnError: true
+				if process.platform == "win32"
+				    command: 'cd output & "../grunt/tidy.bat'
+				else
+				    command: 'cd output && bash ../grunt/tidy.sh'
+
+				# command: 'cmd cd output & "../grunt/tidy.bat" || cd output && bash ../grunt/tidy.sh'
 
 		##################################
 		## Move files to another folder ##
