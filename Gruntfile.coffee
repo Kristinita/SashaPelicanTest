@@ -83,7 +83,7 @@ module.exports = (grunt) ->
 				if process.platform == "win32"
 				    command: '"grunt/tidy.bat"'
 				else
-				    command: 'bash grunt/tidy.sh'
+				    command: 'cd output && bash ../grunt/tidy.sh'
 
 		##################################
 		## Move files to another folder ##
