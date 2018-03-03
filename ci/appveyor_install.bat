@@ -1,7 +1,7 @@
 @REM @Author: Kristinita
 @REM @Date:   2018-02-28 19:42:16
 @REM @Last Modified by:   Kristinita
-@REM Modified time: 2018-03-02 20:45:11
+@REM Modified time: 2018-03-03 08:41:31
 @REM Parallel pip and npm commands.
 @REM Use REM comments:
 @REM https://stackoverflow.com/a/12407934/5951529
@@ -12,5 +12,6 @@
 @REM https://ss64.com/nt/cmd.html
 @REM START command /B option, that output from another consoles move to head console
 @REM https://ss64.com/nt/start.html
+START /B CMD /C "choco install html-tidy"
 START /B CMD /C "pip install --upgrade pip & pip install pipenv & pipenv install --dev"
 START /B CMD /C "choco install nodejs -y & npm install -g grunt-cli & npm install"

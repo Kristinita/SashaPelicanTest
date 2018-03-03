@@ -60,3 +60,4 @@ before_build:
 build_script:
 
   - grunt %GRUNT_COMMAND%
+  - cd output & "../grunt/tidy.bat"
