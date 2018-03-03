@@ -49,4 +49,4 @@ before_script:
 
 script:
   - grunt $GRUNT_COMMAND
-  - cd output && tidy -mq -config ../tidy-config.txt **/*.html
+  - cd output && tidy -mq -utf8 -config ../tidy-config.txt **/*.html
