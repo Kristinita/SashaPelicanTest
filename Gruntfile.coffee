@@ -81,7 +81,7 @@ module.exports = (grunt) ->
 				# Platform-specific tasks
 				# https://stackoverflow.com/a/23848087/5951529
 				if process.platform == "win32"
-				    command: 'grunt/tidy.bat'
+				    command: '"grunt/tidy.bat"'
 				else
 				    command: 'bash grunt/tidy.sh'
 
