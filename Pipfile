@@ -11,6 +11,12 @@ pelican = "*"
 pelican-plugin-installer = "*"
 markdown = "*"
 "beautifulsoup4" = "*"
+md-environ = "*"
+markdown-blockdiag = "*"
+pip-review = "*"
+pymdown-extensions = "*"
+pyembed-markdown = "*"
+markdown-downheader = "*"
 
 [requires]
 
