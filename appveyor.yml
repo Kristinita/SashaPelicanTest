@@ -56,10 +56,12 @@ before_build:
   # https://stackoverflow.com/a/607682/5951529
   - cd
   - pipenv --venv
-  - grunt shell:tidymodify
 
 build_script:
 
   - set PYTHONIOENCODING=utf-8
   - grunt %GRUNT_COMMAND%
+  - grunt shell:tidymodify
+
+test_script:
   - grunt shell:tidyvalidate

@@ -5,5 +5,4 @@
 # [NOTE] Grunt tasks needs grunt-cli globally:
 # https://stackoverflow.com/a/21133609/5951529
 parallel ::: 'pip install --upgrade pip && pip install pipenv && pipenv install --dev' \
-             'npm install --global npm && npm install -g grunt-cli && npm install' \
-             'bash ../tidy/tidy-install.sh'
+             'npm install --global npm && npm install -g grunt-cli && npm install'
