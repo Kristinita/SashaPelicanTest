@@ -4,10 +4,11 @@
 # This file used if use `make publish` or
 # explicitly specify it as your config file.
 
-import os
 import sys
 
-import pelicanconf  # NOQA
+sys.path.append('.')
+
+from pelicanconf import *  # noqa
 """pelicanconf module.
 
 Import settings from pelicanconf.py file.
@@ -15,7 +16,6 @@ Ignore flake8 errors/warnings in this line:
 http://stackoverflow.com/a/10506715/5951529
 """
 
-sys.path.append(os.curdir)
 
 # Absolute path, if site publish
 # Don't use relative paths for publishing!
@@ -23,11 +23,12 @@ sys.path.append(os.curdir)
 RELATIVE_URLS = True
 
 PLUGINS = [
-    'pagefixer',
-    'pelican_javascript',
-    'sitemap', 'interlinks',
-    'section_number',
-    'optimize_images', 'deadlinks']
+    # 'pagefixer',
+    # 'pelican_javascript',
+    # 'sitemap', 'interlinks',
+    # 'section_number',
+    # 'optimize_images', 'deadlinks'
+]
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'

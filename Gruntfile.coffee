@@ -2,24 +2,68 @@
 # @Date:   2017-04-05 20:11:18
 # @Last Modified time: 2017-04-11 08:20:09
 
+
 ###########################
 ## Loading Grunt plugins ##
 ###########################
 
+# gulp = require('gulp')
+# htmltidy = require('gulp-htmltidy')
+
 module.exports = (grunt) ->
-	grunt.loadNpmTasks 'grunt-shell'
-	grunt.loadNpmTasks 'grunt-move'
-	grunt.loadNpmTasks 'grunt-contrib-clean'
-	grunt.loadNpmTasks 'grunt-text-replace'
-	grunt.loadNpmTasks 'grunt-postcss'
-	grunt.loadNpmTasks 'grunt-htmltidy'
-	grunt.loadNpmTasks 'grunt-jsbeautifier'
-	grunt.loadNpmTasks 'grunt-contrib-imagemin'
-	grunt.loadNpmTasks 'grunt-image'
-	grunt.loadNpmTasks 'grunt-contrib-stylus'
-	grunt.loadNpmTasks 'grunt-purifycss'
-	grunt.loadNpmTasks 'grunt-browser-sync'
+	# grunt.loadNpmTasks 'grunt-shell'
+	# grunt.loadNpmTasks 'grunt-move'
+	# grunt.loadNpmTasks 'grunt-contrib-clean'
+	# grunt.loadNpmTasks 'grunt-text-replace'
+	# grunt.loadNpmTasks 'grunt-postcss'
+	# grunt.loadNpmTasks 'grunt-htmltidy'
+	# grunt.loadNpmTasks 'grunt-jsbeautifier'
+	# grunt.loadNpmTasks 'grunt-contrib-imagemin'
+	# grunt.loadNpmTasks 'grunt-image'
+	# grunt.loadNpmTasks 'grunt-contrib-stylus'
+	# grunt.loadNpmTasks 'grunt-purifycss'
+	# grunt.loadNpmTasks 'grunt-browser-sync'
+	# grunt.loadNpmTasks 'grunt-gulp'
+	# grunt.loadNpmTasks 'grunt-ngrok'
+	require('load-grunt-tasks')(grunt)
+
+	################
+	## grunt-time ##
+	################
+	# Show time for Grunt tasks:
+	# https://github.com/sindresorhus/time-grunt
+	# require('time-grunt')(grunt)
+
 	grunt.initConfig
+
+		nicePackage:
+			all:
+				options:
+					blankLine: false
+
+		# posthtml:
+		# 	options:
+		# 		use: [
+		# 			require('posthtml-alt-always')()
+		# 			require('posthtml-aria-tabs')()
+		# 			require('posthtml-doctype')(doctype : 'HTML 4.01 Frameset')
+		# 		]
+		# 	build:
+		# 		files: [
+		# 			expand: true
+		# 			cwd: 'output/PostHTML'
+		# 			src: '**/*.html'
+		# 			dest: 'output/PostHTML'
+		# 		]
+
+		# # Base parameter — https://stackoverflow.com/a/44337370/5951529
+		# gulp:
+		# 	gulptidy:
+		# 		gulp.src('output/**/*.html', base: ".")
+		# 		.pipe(htmltidy(
+		# 			doctype: 'html5'
+		# 			indent: true
+		# 			wrap: 0)).pipe gulp.dest('./')
 
 		###################
 		## Pelican build ##
@@ -28,9 +72,24 @@ module.exports = (grunt) ->
 		## http://manos.im/blog/static-site-pelican-grunt-travis-github-pages/
 		## https://github.com/sindresorhus/grunt-shell
 		shell:
-			generate: command: 'pelican content -s pelicanconf.py'
-			deploy: command: 'pelican content -s publishconf.py'
-			tidy: command: 'tidy -config "tidy-config.txt" -m "output/**/*.html"'
+			generate: command: 'pipenv run pelican content -s pelicanconf.py'
+			deploy: command: 'pipenv run pelican content -s publishconf.py'
+			tidymodify:
+				# Platform-specific tasks
+				# https://stackoverflow.com/a/23848087/5951529
+				if process.platform == "win32"
+					# Need quotes, that command run
+				    command: '"tidy/tidy-modify.bat"'
+				else
+				    command: 'bash tidy/tidy-modify.sh'
+			tidyvalidate:
+				# Platform-specific tasks
+				# https://stackoverflow.com/a/23848087/5951529
+				if process.platform == "win32"
+					# Need quotes, that command run
+				    command: '"tidy/tidy-validate.bat"'
+				else
+				    command: 'bash tidy/tidy-validate.sh'
 
 		##################################
 		## Move files to another folder ##
@@ -181,14 +240,24 @@ module.exports = (grunt) ->
 				files:
 					src: ['output/**/*.jpg']
 
-		# # Imagemin
-		# ##
-		# imagemin:
-		# 	static:  {
-		 #	dist: {
-		 #	  src: ['output/**/*.{png,jpg,jpeg,gif,svg}'],
-		 #	}
-		 #  }
+		###########################
+		## grunt-contrb-imagemin ##
+		###########################
+		# Plugin for minify images:
+		# https://github.com/gruntjs/grunt-contrib-imagemin
+		# Minify all images in output folder
+		# [NOTE] Non-documented behavior!
+		# Imagemin prettify html and add new attributes instead of obsolete
+		imagemin:
+			dynamic:
+				options:
+					optimizationLevel: 7
+				files: [
+					expand: true
+					cwd: '.'
+					src: ['output/images/**/*.{png,jpg,jpeg,gif,svg}']
+					dest: '.'
+					]
 
 		##############
 		##  Stylus  ##
@@ -224,27 +293,36 @@ module.exports = (grunt) ->
 				css: ['output/theme/css/sections/kristinita-temp.css']
 				dest: 'output/theme/css/sections/kristinita-temp.css'
 
-		###################
-		##  Browsersync  ##
-		###################
-		# Live Reloading
-		# https://github.com/BrowserSync/grunt-browser-sync
-		browserSync:
-			bsFiles:
-				src : ['output/theme/css/**/*.css', 'output/theme/js/**/*.js']
+		concurrent:
+			target1: ['clean']
+
+		# ###################
+		# ##  Browsersync  ##
+		# ###################
+		# # Live Reloading
+		# # https://github.com/BrowserSync/grunt-browser-sync
+		# browserSync:
+		# 	bsFiles:
+		# 		src : ['output/theme/css/**/*.css', 'output/theme/js/**/*.js']
+		# 	options:
+		# 		server:
+		# 			baseDir: "../"
+		# 		plugins: [
+		# 			## HTML-injector plugin
+		# 			## That HTML don't refresh, if I change HTML file:
+		# 			## https://github.com/shakyshane/html-injector
+		# 			## JavaScript needs refresh, see
+		# 			## https://stackoverflow.com/q/30762114/5951529
+		# 			module: "bs-html-injector"
+		# 			options:
+		# 				files: "output/**/*.html"
+		# 			]
+
+		ngrok:
 			options:
-				server:
-					baseDir: "../"
-				plugins: [
-					## HTML-injector plugin
-					## That HTML don't refresh, if I change HTML file:
-					## https://github.com/shakyshane/html-injector
-					## JavaScript needs refresh, see
-					## https://stackoverflow.com/q/30762114/5951529
-					module: "bs-html-injector"
-					options:
-						files: "output/**/*.html"
-					]
+				authToken: '6FAzTiHpA7FhKkLKjUoQi_4TJMoSofsewziHE3XFC5J'
+			server:
+				proto: 'https'
 
 
 	##################
@@ -257,7 +335,7 @@ module.exports = (grunt) ->
 	# publish — before publishing with absolute paths
 
 	grunt.registerTask 'test', [
-		'shell:tidy'
+		'shell:generate'
 		# 'postcss'
 		# 'move'
 		# 'clean'
@@ -267,6 +345,11 @@ module.exports = (grunt) ->
 		# 'purifycss'
 		# 'stylus'
 		# 'browserSync'
+		# 'gulp'
+		# 'ngrok'
+		# 'concurrent:target1'
+		# 'imagemin'
+		# 'posthtml'
 	]
 
 	grunt.registerTask 'bro', [
@@ -289,7 +372,6 @@ module.exports = (grunt) ->
 		'replace'
 		'stylus'
 		'purifycss'
-		'postcss'
 		'jsbeautifier'
 	]
 	return
