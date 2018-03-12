@@ -85,5 +85,5 @@ deploy:
   # name: Kristinita
   committer-from-gh: true
   fqdn: kristi.ru
-  project-name: Kristinitas Search
+  project-name: "Kristinita's Search"
   verbose: true
