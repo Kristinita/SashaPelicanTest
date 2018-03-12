@@ -48,19 +48,39 @@ script:
 after_success:
   - grunt shell:tidyvalidate
 
+
+# Automatically deploy site to GitHub Pages:
+# https://docs.travis-ci.com/user/deployment
+# https://docs.travis-ci.com/user/deployment/pages/
+# Changes not deploy, if pull request:
+# https://docs.travis-ci.com/user/deployment#Pull-Requests
+# If “script” failed, deploying doesn't run:
+# else “pelican_scaffold”, deploy run, even if “script” failed:
+# https://github.com/textbook/pelican_scaffold
 deploy:
+  provider: pages
+  on:
+    branch: SashaDevelop
+    # Deploy site, only if “grunt publish”, if “grunt” — not deploy:
+    # https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on%3A
+    condition: $GRUNT_COMMAND = publish
+  # [FIXME] Downgrade dpl for correct deploying to GitHub Pages:
+  # https://github.com/travis-ci/travis-ci/issues/9312
   edge:
     branch: v1.8.47
-  provider: pages
+  # Don't overwrite history of destination repository:
+  # https://docs.travis-ci.com/user/deployment/pages/
+  keep-history: true
+  # Don't clean output folder:
+  # ttps://docs.travis-ci.com/user/deployment/pages/
   skip-cleanup: true
   target-branch: master
   local-dir: output
   repo: Kristinita/SashaTravis.github.io
+  # “GITHUB_API_KEY” and “GITHUB_EMAIL” is secure variables, that set in repository sittings:
+  # https://docs.travis-ci.com/user/environment-variables#Defining-Variables-in-Repository-Settings
+  # https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
   github-token: $GITHUB_API_KEY
-  name: Kristinita
   e-mail: $GITHUB_EMAIL
-  keep-history: true
-  on:
-    branch: SashaDevelop
-    condition: $GRUNT_COMMAND = publish
+  name: Kristinita
   verbose: true
