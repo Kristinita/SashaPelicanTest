@@ -61,5 +61,5 @@ deploy:
   e-mail: $GITHUB_EMAIL
   keep-history: true
   on:
-    branch: master
+    branch: SashaDevelop
   verbose: true
