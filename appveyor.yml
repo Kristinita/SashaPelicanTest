@@ -49,14 +49,6 @@ install:
   # https://github.com/vim/vim-win32-installer/blob/master/appveyor.yml
   - "%APPVEYOR_BUILD_FOLDER%/ci/appveyor-install.bat"
 
-# Check, that virtual environment install inside project.
-before_build:
-
-  # Get current working directory:
-  # https://stackoverflow.com/a/607682/5951529
-  - cd
-  - pipenv --venv
-
 build_script:
 
   - grunt %GRUNT_COMMAND%

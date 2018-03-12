@@ -1,9 +1,11 @@
 @REM @Author: Kristinita
 @REM @Date:   2018-03-07 14:57:34
 @REM @Last Modified by:   Kristinita
-@REM Modified time: 2018-03-07 19:20:32
+@REM Modified time: 2018-03-08 09:20:11
 @REM Validation all HTML files.
 @ECHO off
+@REM For correct displaying Cyrillic filenames
+CHCP 65001
 CD output
 SET VALIDALL=true
 @REM Correct ERRORLEVEL in IF/ELSE
