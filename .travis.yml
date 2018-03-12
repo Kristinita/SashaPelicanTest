@@ -55,7 +55,7 @@ after_success:
 # Changes not deploy, if pull request:
 # https://docs.travis-ci.com/user/deployment#Pull-Requests
 # If “script” failed, deploying doesn't run:
-# else “pelican_scaffold”, deploy run, even if “script” failed:
+# else “pelican_scaffold”, deploy run, even if “script” failed, don't use “pelican_scaffold”:
 # https://github.com/textbook/pelican_scaffold
 deploy:
   provider: pages
@@ -68,7 +68,7 @@ deploy:
   # https://github.com/travis-ci/travis-ci/issues/9312
   edge:
     branch: v1.8.47
-  # Don't overwrite history of destination repository:
+  # Don't overwrite commit history of destination repository:
   # https://docs.travis-ci.com/user/deployment/pages/
   keep-history: true
   # Don't clean output folder:
@@ -81,6 +81,9 @@ deploy:
   # https://docs.travis-ci.com/user/environment-variables#Defining-Variables-in-Repository-Settings
   # https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
   github-token: $GITHUB_API_KEY
-  e-mail: $GITHUB_EMAIL
-  name: Kristinita
+  # e-mail: $GITHUB_EMAIL
+  # name: Kristinita
+  committer-from-gh: true
+  fqdn: kristi.ru
+  project-name: Kristinita's Search
   verbose: true
