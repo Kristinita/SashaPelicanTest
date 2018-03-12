@@ -89,5 +89,5 @@ deploy:
   # Escaping single quote in YAML:
   # https://github.com/dotmaster/toYaml/issues/1
   # https://stackoverflow.com/a/11301675/5951529
-  project-name: "Kristinita's Search"
+  project-name: Kristinita''s Search
   verbose: true
