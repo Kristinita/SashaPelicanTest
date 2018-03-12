@@ -66,8 +66,8 @@ deploy:
     condition: $GRUNT_COMMAND = publish
   # [FIXME] Downgrade dpl for correct deploying to GitHub Pages:
   # https://github.com/travis-ci/travis-ci/issues/9312
-  edge:
-    branch: v1.8.47
+  # edge:
+  #   branch: v1.8.47
   # Don't overwrite commit history of destination repository:
   # https://docs.travis-ci.com/user/deployment/pages/
   keep-history: true
