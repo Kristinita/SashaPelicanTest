@@ -81,9 +81,13 @@ deploy:
   # https://docs.travis-ci.com/user/environment-variables#Defining-Variables-in-Repository-Settings
   # https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
   github-token: $GITHUB_API_KEY
-  # e-mail: $GITHUB_EMAIL
-  # name: Kristinita
+  # Name and e-mail of committer:
+  # https://docs.travis-ci.com/user/deployment/pages/#Further-configuration
   committer-from-gh: true
+  # Generating CNAME for custom domain
   fqdn: kristi.ru
+  # Escaping single quote in YAML:
+  # https://github.com/dotmaster/toYaml/issues/1
+  # https://stackoverflow.com/a/11301675/5951529
   project-name: "Kristinita's Search"
   verbose: true
