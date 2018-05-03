@@ -1,3 +1,0 @@
-indent: yes
-vertical-space: no
-wrap: 0

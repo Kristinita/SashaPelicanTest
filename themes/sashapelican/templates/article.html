@@ -1,94 +1,120 @@
 <!-- @Author: Kristinita -->
-<!-- @Date:   2018-01-29 06:47:32 -->
-<!-- @Last Modified time: 2018-02-05 13:17:05 -->
+<!-- @Date:   2017-04-15 17:42:59 -->
+<!-- @Last Modified time: 2018-04-06 10:18:47 -->
 {% extends 'base.html' %}
+
+<!--==========================
+=            Head            =
+===========================-->
 
 <!-- Title phrase -->
 {% block base_pagetitle %}{{ article.pagetitle }}{% endblock %}
 <!-- Content of attribute <meta content="|"> -->
 {% block base_metacontent %}{{ article.metacontent }}{% endblock %}
+<!-- Open Graph image -->
+{% block base_opengraphimage %}{{ article.opengraphimage }}{% endblock %}
 
 <!--=============================
 =            Scripts            =
 ==============================-->
-<!-- jQuery -->
-{% block base_jquery -%}
-    {%- if article.jquery == 'true' -%}
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/jquery/dist/jquery.min.js"></script>
-    {%- endif -%}
-{%- endblock %}
 
-<!-- Mailhu -->
-{% block base_mailhu -%}
-    {%- if article.mailhu == 'true' -%}
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Resize/resize.js" defer></script>
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js" defer></script>
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Mailhu/mailhu.js" defer></script>
-		<link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-		<link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/css/script-colors/Mailhu/Sasha-Mailhu.css">
-    {%- endif -%}
-{%- endblock %}
-
-<!-- Fancybox -->
-{% block base_fancybox -%}
-    {%- if article.fancybox == 'true' -%}
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/fancybox/dist/jquery.fancybox.min.js" async></script>
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Fancybox/fancybox.js" defer></script>
-		<link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/fancybox/dist/jquery.fancybox.min.css">
-    {%- endif -%}
-{%- endblock %}
-
-<!-- Rainbow -->
-{% block base_rainbow -%}
-    {%- if article.rainbow == 'true' -%}
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/rainbow/dist/rainbow.min.js" async></script>
-	    <link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/bower-components/rainbow/themes/css/rainbow.css">
-    {%- endif -%}
+<!-- typo-reporter -->
+{% block base_typoreporter -%}
+	<script src="https://npmcdn.com/typo-reporter/lib/TypoReporter.min.js" defer></script>
+	{%- if article.lang == 'ru' -%}
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/typo-reporter/typo-reporter-ru.js" defer></script>
+	{% else %}
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/typo-reporter/typo-reporter-en.js" defer></script>
+	{%- endif -%}
 {%- endblock %}
 
 <!-- Tooltipster -->
 {% block base_tooltipster -%}
-    {%- if article.tooltipster == 'true' -%}
-		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/node_modules/tooltipster/dist/js/tooltipster.bundle.min.js" defer></script>
-		<link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/node_modules/tooltipster/dist/css/tooltipster.bundle.min.css" />
-		<link rel="stylesheet" href="{{SITEURL}}/{{ THEME_STATIC_DIR }}/node_modules/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+	{%- if article.tooltipster == 'true' -%}
+		<script src="//cdn.jsdelivr.net/jquery.tooltipster/latest/js/tooltipster.bundle.min.js" defer></script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.tooltipster/latest/css/tooltipster.bundle.min.css" />
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
 		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Tooltipster/tooltip.js" defer></script>
-    {%- endif -%}
+	{%- endif -%}
 {%- endblock %}
 
 <!-- Clipboard.js -->
 {% block base_clipboardjs -%}
-    {%- if article.clipboardjs == 'true' -%}
-	    <script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/node_modules/clipboard/dist/clipboard.min.js" defer></script>
+	{%- if article.clipboardjs == 'true' -%}
+		<script src="//cdn.jsdelivr.net/clipboard.js/latest/clipboard.min.js" defer></script>
 		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Clipboard.js/Clipboard.js" defer></script>
-    {%- endif -%}
+	{%- endif -%}
 {%- endblock %}
 
-<!-- Details-Polyfill -->
+<!-- Visualize -->
+{% block base_visualize -%}
+	{%- if article.visualize == 'true' -%}
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Visualize/visualize.js" defer></script>
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Visualize/visualize-bar-chart.js" defer></script>
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Visualize/visualize-pie-chart.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+<!-- [DEPRECATED] Modern browsers support “details/summary”: -->
+<!-- https://caniuse.com/#search=details -->
+{# <!-- Details-Polyfill -->
+<!-- http://ru.stackoverflow.com/a/498984/199934 -->
 {% block base_detailspolyfill -%}
-    {%- if article.detailspolyfill == 'true' -%}
+	{%- if article.detailspolyfill == 'true' -%}
 		<script src="{{SITEURL}}/js/Details-Polyfill/details1.js" defer></script>
 		<script src="{{SITEURL}}/js/Details-Polyfill/details2.js" defer></script>
-    {%- endif -%}
+	{%- endif -%}
+{%- endblock %} #}
+
+<!-- Custom JavaScript, specific for article
+Article metadata variable -->
+{% block base_customjs -%}
+	{%- if article.customjs == 'true' -%}
+		<script src="{{SITEURL}}/js/personal/{{article.customjs1}}.js" defer></script>
+	{%- endif -%}
 {%- endblock %}
 
-{% block base_photos -%}
-{% if article.photo_gallery %}
-<div class="gallery">
-		{% for title, gallery in article.photo_gallery %}
-			<h1>{{ title }}</h1>
-				{% for name, photo, thumb, exif, caption in gallery %}
-						<a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
-				{% endfor %}
-		{% endfor %}
-</div>
-{% endif %}
-{%- endblock %}
+
+<!--=========================
+=            CSS            =
+==========================-->
 
 <!-- Right or left Sasha icon -->
 {% block base_iconleftorright %}{{ article.iconleftorright }}{% endblock %}
 <!-- CSS of pages -->
 {% block base_pagecolors %}{{ article.pagecolors }}{% endblock %}
+<!-- Aside image -->
+{% block base_asideimage %}{{ article.asideimage }}{% endblock %}
+
+<!-- Custom CSS, specific for article -->
+{% block base_customcss -%}
+	{%- if article.customcss == 'true' -%}
+		<link rel="stylesheet" href="{{SITEURL}}/css/personal/{{article.customcss1}}.css">
+	{%- endif -%}
+{%- endblock %}
+
+{% block galleryblock -%}
+{% if article.photo_image %}<img src="{{ SITEURL }}/{{ article.photo_image[1] }}" />{% endif %}
+{%- endblock %}
+
+<!--=========================
+=            Feed           =
+==========================-->
+
+<!-- Add Atom Feed
+https://stackoverflow.com/a/440454/5951529
+%s variable from pelicanconf.py file transform to format(category.slug)
+https://github.com/search?q=CATEGORY_FEED_ATOM&type=Code , https://github.com/satyamyadav/blog/blob/892083f531be87a274a5c13a90246db319b0201a/v0.3.0/blog/theme/templates/category.html
+https://webref.ru/html/link/rel
+-->
+{% block base_atom_feed -%}
+	<link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" rel="alternate" type="application/atom+xml">
+	<link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" rel="alternate" type="application/atom+xml">
+{%- endblock %}
+
+<!--=============================
+=            Content            =
+==============================-->
 
 <!-- Text in aside block -->
 {% block base_asidetitle %}{{ article.pagetitle }}{% endblock %}
@@ -100,5 +126,43 @@
 {% block base_date %}{{ article.date }}{% endblock %}
 {% block base_date_displayed %}{{ article.modified }}{% endblock %}
 
+<!-- Epigraph -->
+{% block base_epigraph -%}
+	{%- if article.epigraph == 'true' -%}
+	<div class="SashaEpigraph">
+		<em>{{ article.epigraphtext }}</em>
+	</div>
+	{% endif %}
+{%- endblock %}
+
+<!-- Title image -->
+{% block base_titleimage -%}
+	{%- if article.titleimage == 'true' -%}
+		<p><img alt="Header image" src="{{SITEURL}}/images/header/{{ article.titleimagename }}.jpg"></p>
+	{% endif %}
+{%- endblock %}
+
 <!-- Site content -->
 {% block base_content %}{{ article.content }}{% endblock %}
+
+<!-- Neighbors: add pagination
+https://github.com/getpelican/pelican-plugins/tree/master/neighbors
+See example in https://github.com/whatifrussian/website/blob/9e29831dcf61c85e711a392709aaf711212ba7c9/themes/whatif/templates/includes/article_content.html -->
+{% block base_neighbors -%}
+	{%- if article.lang == 'ru' -%}
+		{% include 'includes/neighbors-ru.html' %}
+	{% else %}
+		{% include 'includes/neighbors-en.html' %}
+	{% endif %}
+{%- endblock %}
+
+<!-- Footer: new disgruntled Russian and sign
+E-Mail obfuscate: http://rot13.florianbersier.com/
+Get relative source path like https://github.com/kura/kura.io/blob/e8f2c6801a0013201d734aa1ac48d9ac92a40b96/ghastly/templates/article.html#L10 -->
+{% block base_new_russian %}
+	{%- if article.lang == 'ru' -%}
+		{% include 'includes/footer-ru.html' %}
+	{% else %}
+		{% include 'includes/footer-en.html' %}
+	{% endif %}
+{% endblock %}

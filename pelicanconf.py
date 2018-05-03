@@ -1,29 +1,56 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-03-07 19:29:53
+# @Last Modified time: 2018-05-02 19:39:02
 """Pelican configuration file.
 
 For development. publishconf.py — for publishing.
 """
 
-""" logging pelican module.
+# Parse YAML configuration file:
+# https://stackoverflow.com/q/41974628/5951529
+# Require PyYAML module:
+# http://pyyaml.org/wiki/PyYAML
+import yaml
 
-For disabling warnings:
-http://docs.getpelican.com/en/stable/settings.html#logging
-"""
+# [DEPRECATED] All warnings fixed:
+# For disabling warnings:
+# http://docs.getpelican.com/en/stable/settings.html#logging
 # import logging
 
 # ****************************************************************************
 # *                                  General                                 *
 # ****************************************************************************
 
-AUTHOR = 'Саша Черных'
-SITENAME = 'Поиск Кристиниты'
+# Relative paths for development.
 SITEURL = '.'
 
-TIMEZONE = 'Europe/Moscow'
-DEFAULT_LANG = 'en'
+# Configuration from YAML files.
+YAMLCONFIG = yaml.load(open('pelicanvariables.yaml'))
+
+PATH = YAMLCONFIG['path']
+OUTPUT_PATH = YAMLCONFIG['output_path']
+THEME = YAMLCONFIG['theme']
+THEME_STATIC_DIR = YAMLCONFIG['theme_static_dir']
+THEME_STATIC_PATHS = YAMLCONFIG['theme_static_paths']
+PLUGIN_PATHS = YAMLCONFIG['plugin_paths']
+
+AUTHOR = YAMLCONFIG['author']
+SITENAME = YAMLCONFIG['sitename']
+TIMEZONE = YAMLCONFIG['timezone']
+DEFAULT_LANG = YAMLCONFIG['default_lang']
+CACHE_PATH = YAMLCONFIG['cache_path']
+
+# Path for pages
+# [Hack] That exclude articles, include non-exicting folder.
+# «ARTICLE_PATHS = None» — critical error, integer parameter
+PAGE_PATHS = YAMLCONFIG['page_paths']
+# Path for articles
+# Don't set “PAGE_PATHS = ['']”! See
+# https://github.com/getpelican/pelican/issues/2123
+ARTICLE_PATHS = YAMLCONFIG['article_paths']
+
+GITHUB_URL = YAMLCONFIG['github_url']
 
 # ****************************************************************************
 # *                                Generation                                *
@@ -33,19 +60,16 @@ DEFAULT_LANG = 'en'
 # I don't get bugs, if true.
 # If false, files, which I delete from content directory, not deleted from
 # output directory.
-
 DELETE_OUTPUT_DIRECTORY = False
 
 # Do not touch in generation process
-
-OUTPUT_RETENTION = [".git"]
+OUTPUT_RETENTION = ['.git']
 
 # Cache settings
 # http://docs.getpelican.com/en/latest/settings.html?highlight=cache
 # [NOTE] If experiments with Pelican settings, use --ignore-cache option
 # http://docs.getpelican.com/en/latest/settings.html#settings
 CACHE_CONTENT = True
-CACHE_PATH = 'pelican_cache'
 GZIP_CACHE = True
 # [NOTE] WITH_FUTURE_DATES conflict with CONTENT_CACHING_LAYER
 # http://docs.getpelican.com/en/latest/settings.html#reading-only-modified-content
@@ -53,17 +77,11 @@ CONTENT_CACHING_LAYER = 'reader'
 LOAD_CONTENT_CACHE = True
 
 # Relative URLs for developing
-
 RELATIVE_URLS = True
 
 # Original format without rendering. If true, md rendering to md,
 # if false, md → html
-
 OUTPUT_SOURCES = False
-
-# GitHub path for this project
-
-GITHUB_URL = 'https://github.com/Kristinita/KristinitaPelican'
 
 # ****************************************************************************
 # *                                  Plugins                                 *
@@ -73,27 +91,35 @@ GITHUB_URL = 'https://github.com/Kristinita/KristinitaPelican'
 
 https://github.com/getpelican/pelican-plugins
 
+filetime_from_git — add “date” and “modified” varables from Git:
+If plugin exist: you don't need add “Date:” and “Modified:” variables for
+your each article:
+https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git
+
 liquid_tags — add videos/images by code;
-for Instagram only images, without additional data;
+for Instagram images, without another frames data;
 https://github.com/getpelican/pelican-plugins/tree/master/liquid_tags
 
 """
 
-PLUGIN_PATHS = ['pelican-plugins']
 # [BUG] Automatic plugins installation doesn't work for me:
 # https://github.com/kplaube/pelican-plugin-installer/issues/6
 PLUGINS = [
     # [DEPRECATED], now by default
     # https://github.com/getpelican/pelican-plugins/tree/master/feed_summary
-    # # 'feed_summary',
-    # 'interlinks',
-    # 'just_table',
-    # 'liquid_tags.gram',
-    # 'neighbors',
+    # 'feed_summary',
+    'filetime_from_git',
+    'interlinks',
+    'just_table',
+    'liquid_tags.gram',
+    'neighbors',
     # [FIXME] Different colors for different designs
     # 'pelican-linkclass',
-    # [BUG] Doesn't work for Python 3.6:
-    # https://github.com/getpelican/pelican-plugins/issues/977
+    # [DONE]
+    # # [BUG] “TypeError: Unicode-objects must be encoded before hashing”:
+    # # https://github.com/getpelican/pelican-plugins/issues/1011
+    # [DEPRECATED] Anchors not support, but all my internal links with anchors:
+    # https://github.com/getpelican/pelican-plugins/issues/1025
     # 'permalinks',
     # 'photos',
     # Disable, because:
@@ -101,16 +127,18 @@ PLUGINS = [
     # 2. Incorrect paths — http://bit.ly/2pZdyk0
     # 'pelican_javascript',
     'putsashi',
-    # 'section_number',
+    # [BUG] Incorrect Cyrillic URL's:
+    # https://github.com/getpelican/pelican-plugins/issues/1010
+    # 'random_article',
+    'section_number',
 ]
 
-# PHOTO_LIBRARY = "pictures"
+# PHOTO_LIBRARY = 'pictures'
 
 # PHOTO_THUMB = (192, 144, 60)
 
 # Deadlinks
 # https://github.com/silentlamb/pelican-deadlinks/
-
 DEADLINK_VALIDATION = True
 
 DEADLINK_OPTS = {
@@ -118,19 +146,26 @@ DEADLINK_OPTS = {
     'archive': True,
     'classes': ['SashaDeadlink'],
     # Disable «403» or «404» text after link in generated HTML
-    'labels': False
+    'labels': False,
 }
 
 # just_table
 # Simple Pelican tables
 # https://github.com/burakkose/just_table
-# [Bug] Unwanted <p> tag — https://github.com/burakkose/just_table/issues/5
+# [BUG] Unwanted <p> tag — https://github.com/burakkose/just_table/issues/5
 JTABLE_SEPARATOR = '|'
 
+# filetime_from_git
+# https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git#other-options
+GIT_HISTORY_FOLLOWS_RENAME = True
+# GIT_GENERATE_PERMALINK = True
+GIT_SHA_METADATA = True
+GIT_FILETIME_FROM_GIT = True
+
+RANDOM = 'random.html'
 
 # Sitemap
 # https://github.com/getpelican/pelican-plugins/tree/master/sitemap
-
 SITEMAP = {
     'format': 'xml',
     'priorities': {
@@ -147,15 +182,14 @@ SITEMAP = {
 
 # Section number
 # https://github.com/getpelican/pelican-plugins/tree/master/section_number
-
 SECTION_NUMBER_MAX = 5
 
 # Interlinks for generate links for frequently used sites
 # https://github.com/getpelican/pelican-plugins/tree/master/interlinks
-
 INTERLINKS = {
     'kristinita': 'https://kristinita.ru/#gsc.tab=0&gsc.q='
 }
+
 
 # ****************************************************************************
 # *                                 Markdown                                 *
@@ -170,7 +204,10 @@ INTERLINKS = {
 http://romeogolf.github.io/pelican-i-modul-python-markdown.html
 Extensions, which Sasha's fan use.
 
-Officially support extensions doesn't need additional installation:
+CLI usage: https://python-markdown.github.io/cli/#using-extensions
+Example: “python -m markdown -x pymdownx.superfences -c config.yml SashaSuperFences.md”
+
+Officially support extensions doesn't need extra installation:
 https://python-markdown.github.io/extensions/#officially-supported-extensions
 
 #
@@ -259,7 +296,7 @@ markdown_blockdiag — diagrams in Markdown
 https://github.com/gisce/markdown-blockdiag
 http://blockdiag.com/en/blockdiag/index.html
 
-markdown_newtab — add target="_blank" for all links
+markdown_newtab — add target='_blank' for all links
 Attribute don't add for local anchors
 https://github.com/Undeterminant/markdown-newtab/blob/master/run_tests.py
 
@@ -302,21 +339,30 @@ MARKDOWN = {
         'pymdownx.critic': {},
         'pymdownx.escapeall': {},
         'pymdownx.highlight': {},
-        'pymdownx.inlinehilite': {'css_class': 'SashaInlineHighlight',
-                                  'style_plain_text': True,
-                                  # [DEPRECATED] in 3.0 pymdown-extensions version
-                                  # 'use_codehilite_settings': False,
-                                  },
-        'pymdownx.magiclink': {'hide_protocol': True,
-                               'repo_url_shortener': True
-                               },
+        'pymdownx.inlinehilite': {
+            'css_class': 'SashaInlineHighlight',
+            'style_plain_text': True,
+            # [DEPRECATED] in 3.0 pymdown-extensions version
+            # 'use_codehilite_settings': False,
+        },
+        'pymdownx.magiclink': {
+            'hide_protocol': True,
+            'repo_url_shortener': True
+        },
         'pymdownx.mark': {},
         # That bars change colors in each 10%:
         # https://github.com/facelessuser/pymdown-extensions/pull/208
-        'pymdownx.progressbar': {'progress_increment': 10},
+        'pymdownx.progressbar': {
+            'progress_increment': 10
+        },
         'pymdownx.smartsymbols': {},
         'pymdownx.snippets': {},
-        'pymdownx.superfences': {'css_class': 'SashaBlockHighlight'},
+        'pymdownx.superfences': {
+            'css_class': 'SashaBlockHighlight',
+            # Doesn't convert tabs to spaces in code blocks:
+            # https://github.com/marionebl/commitlint/issues/316
+            'preserve_tabs': True,
+        },
         'pymdownx.tilde': {},
         #
         # 4. Other extensions
@@ -336,34 +382,15 @@ MARKDOWN = {
 # *                                   Paths                                  *
 # ****************************************************************************
 
-# Path for site content
-
-PATH = 'content'
-
-# Path for articles
-# Don't set “PAGE_PATHS = ['']”! See
-# https://github.com/getpelican/pelican/issues/2123
-
-ARTICLE_PATHS = ['SashaTest']
-
-# Path for pages
-# [Hack] That exclude articles, include non-exicting folder.
-# «ARTICLE_PATHS = None» — critical error, integer parameter
-
-PAGE_PATHS = ['None']
-
 # Non-modified files and folders
 # [Hack] The register matters. 404.md & 404.html don't work.
-
 STATIC_PATHS = ['']
 
 # That filename = Slug, not necessary to write slug manually for each article
-
 SLUGIFY_SOURCE = 'basename'
 
 # Extra path metadata
 # http://manos.im/blog/static-site-pelican-grunt-travis-github-pages/
-
 ARTICLE_URL = '{slug}.html'
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = PAGE_URL
@@ -391,18 +418,11 @@ TAGS_SAVE_AS = 'tag/alltags.html'
 # *                                   Other                                  *
 # ****************************************************************************
 
-# Theme
-
-THEME = 'themes/sashapelican'
-
 # Pagination — division of articles
-
 DEFAULT_PAGINATION = False
 
 # Disable logging of empty alt attribute, needs “import logging” module
-# Fix, but save as comment, that doesn't forgot if I will have a similar
-# problem.
-
+# Fix, but save as comment, that doesn't forgot if I will have a similar problem.
 # LOG_FILTER = [(logging.WARN, 'Empty alt attribute for image %s in %s')]
 
 # FORMATTED_FIELDS = ['summary']
@@ -416,5 +436,4 @@ DEFAULT_PAGINATION = False
 # False, because bug with br in a newline:
 # https://github.com/mintchaos/typogrify/pull/39
 # Also unexpected &nbsp; after last word in line.
-
 TYPOGRIFY = False
