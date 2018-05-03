@@ -58,7 +58,7 @@ install:
 # Needs, that “grunt-checkbranch” works correct:
 # https://stackoverflow.com/a/18866140/5951529
 # Needs in “install” section, because in “init” section actions before cloning.
-- git checkout master
+# - git checkout master
 # [NOTE] Console (cmd.exe) is default terminal.
 # If needs PowerShell, “ps:” required:
 # https://www.appveyor.com/docs/appveyor-yml/
