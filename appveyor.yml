@@ -75,7 +75,7 @@ install:
 - '%APPVEYOR_BUILD_FOLDER%/batch/appveyor-install.bat'
 
 build_script:
-- grunt %GRUNT_COMMAND%
+- pipenv run pelican content -s pelicanconf.py --fatal warnings --verbose
 
 test_script:
 - grunt validatesource validateoutput remote
