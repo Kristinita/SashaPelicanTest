@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-05-02 19:39:02
+# @Last Modified time: 2018-05-03 17:55:14
 """Pelican configuration file.
 
 For development. publishconf.py — for publishing.
@@ -46,7 +46,7 @@ CACHE_PATH = YAMLCONFIG['cache_path']
 # «ARTICLE_PATHS = None» — critical error, integer parameter
 PAGE_PATHS = YAMLCONFIG['page_paths']
 # Path for articles
-# Don't set “PAGE_PATHS = ['']”! See
+# Don't set "PAGE_PATHS = ['']"! See
 # https://github.com/getpelican/pelican/issues/2123
 ARTICLE_PATHS = YAMLCONFIG['article_paths']
 
@@ -91,8 +91,8 @@ OUTPUT_SOURCES = False
 
 https://github.com/getpelican/pelican-plugins
 
-filetime_from_git — add “date” and “modified” varables from Git:
-If plugin exist: you don't need add “Date:” and “Modified:” variables for
+filetime_from_git — add "date" and "modified" varables from Git:
+If plugin exist: you don't need add "Date:" and "Modified:" variables for
 your each article:
 https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git
 
@@ -116,7 +116,7 @@ PLUGINS = [
     # [FIXME] Different colors for different designs
     # 'pelican-linkclass',
     # [DONE]
-    # # [BUG] “TypeError: Unicode-objects must be encoded before hashing”:
+    # # [BUG] "TypeError: Unicode-objects must be encoded before hashing":
     # # https://github.com/getpelican/pelican-plugins/issues/1011
     # [DEPRECATED] Anchors not support, but all my internal links with anchors:
     # https://github.com/getpelican/pelican-plugins/issues/1025
@@ -205,7 +205,7 @@ http://romeogolf.github.io/pelican-i-modul-python-markdown.html
 Extensions, which Sasha's fan use.
 
 CLI usage: https://python-markdown.github.io/cli/#using-extensions
-Example: “python -m markdown -x pymdownx.superfences -c config.yml SashaSuperFences.md”
+Example: "python -m markdown -x pymdownx.superfences -c config.yml SashaSuperFences.md"
 
 Officially support extensions doesn't need extra installation:
 https://python-markdown.github.io/extensions/#officially-supported-extensions
@@ -327,7 +327,7 @@ MARKDOWN = {
         # nl2br — extension, without which I can work.
         # 'markdown.extensions.nl2br': {},
         'markdown.extensions.sane_lists': {},
-        # [DEPRECATED] “section_number” disabling bug:
+        # [DEPRECATED] "section_number" disabling bug:
         # https://github.com/waylan/Python-Markdown/issues/560
         # Now I use regex replacing in Gruntfile.coffee and don't need this extension:
         # 'markdown.extensions.toc': {'permalink': True},
@@ -406,7 +406,7 @@ TAGS_SAVE_AS = 'tag/alltags.html'
 
 # Disable feed generation in developing process
 # http://docs.getpelican.com/en/latest/faq.html#what-if-i-want-to-disable-feed-generation
-# [BUG] I get in console: “TypeError: not all arguments converted during string formatting”
+# [BUG] I get in console: "TypeError: not all arguments converted during string formatting"
 
 # FEED_ALL_ATOM = None
 # CATEGORY_FEED_ATOM = None
@@ -421,7 +421,7 @@ TAGS_SAVE_AS = 'tag/alltags.html'
 # Pagination — division of articles
 DEFAULT_PAGINATION = False
 
-# Disable logging of empty alt attribute, needs “import logging” module
+# Disable logging of empty alt attribute, needs "import logging" module
 # Fix, but save as comment, that doesn't forgot if I will have a similar problem.
 # LOG_FILTER = [(logging.WARN, 'Empty alt attribute for image %s in %s')]
 
