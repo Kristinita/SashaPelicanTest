@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-05-03 17:55:14
+# @Last Modified time: 2018-05-03 18:01:26
 """Pelican configuration file.
 
-For development. publishconf.py — for publishing.
+For development. publishconf.py - for publishing.
 """
 
 # Parse YAML configuration file:
@@ -43,7 +43,7 @@ CACHE_PATH = YAMLCONFIG['cache_path']
 
 # Path for pages
 # [Hack] That exclude articles, include non-exicting folder.
-# «ARTICLE_PATHS = None» — critical error, integer parameter
+# «ARTICLE_PATHS = None» - critical error, integer parameter
 PAGE_PATHS = YAMLCONFIG['page_paths']
 # Path for articles
 # Don't set "PAGE_PATHS = ['']"! See
@@ -91,12 +91,12 @@ OUTPUT_SOURCES = False
 
 https://github.com/getpelican/pelican-plugins
 
-filetime_from_git — add "date" and "modified" varables from Git:
+filetime_from_git - add "date" and "modified" varables from Git:
 If plugin exist: you don't need add "Date:" and "Modified:" variables for
 your each article:
 https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git
 
-liquid_tags — add videos/images by code;
+liquid_tags - add videos/images by code;
 for Instagram images, without another frames data;
 https://github.com/getpelican/pelican-plugins/tree/master/liquid_tags
 
@@ -124,7 +124,7 @@ PLUGINS = [
     # 'photos',
     # Disable, because:
     # 1. Plugin create duplicates of files
-    # 2. Incorrect paths — http://bit.ly/2pZdyk0
+    # 2. Incorrect paths - http://bit.ly/2pZdyk0
     # 'pelican_javascript',
     'putsashi',
     # [BUG] Incorrect Cyrillic URL's:
@@ -152,7 +152,7 @@ DEADLINK_OPTS = {
 # just_table
 # Simple Pelican tables
 # https://github.com/burakkose/just_table
-# [BUG] Unwanted <p> tag — https://github.com/burakkose/just_table/issues/5
+# [BUG] Unwanted <p> tag - https://github.com/burakkose/just_table/issues/5
 JTABLE_SEPARATOR = '|'
 
 # filetime_from_git
@@ -214,73 +214,73 @@ https://python-markdown.github.io/extensions/#officially-supported-extensions
 # 1. extra
 #
 
-Attribute List — add id and classes in Markdown
+Attribute List - add id and classes in Markdown
 https://python-markdown.github.io/extensions/extra/
 
-Definition List — add dl, dd, dt tags
+Definition List - add dl, dd, dt tags
 https://python-markdown.github.io/extensions/definition_lists/
 https://webref.ru/html/dd
 
-Fenced code blocks — correct display multiline code blocks
+Fenced code blocks - correct display multiline code blocks
 https://python-markdown.github.io/extensions/fenced_code_blocks/
 
-Tables — simple tables
+Tables - simple tables
 https://python-markdown.github.io/extensions/tables/
 
 #
 # 2. Other default extensions
 #
 
-admonition — notes in Markdown
+admonition - notes in Markdown
 https://python-markdown.github.io/extensions/admonition/
 
-nl2br — new line without 2 br in line end
+nl2br - new line without 2 br in line end
 Like GitHub, not like Stack Overflow
 https://python-markdown.github.io/extensions/nl2br/
 
-sane_lists — mix ordered/unordered list
+sane_lists - mix ordered/unordered list
 https://python-markdown.github.io/extensions/sane_lists/
 
 #
 # 3. facelessuser extensions
 #
 
-betterem — fix ** and __ symbols
+betterem - fix ** and __ symbols
 http://facelessuser.github.io/pymdown-extensions/extensions/betterem/
 
-caret — underline, if ^^ symbols
+caret - underline, if ^^ symbols
 http://facelessuser.github.io/pymdown-extensions/extensions/caret/
 
-critic — Critic Markup support
+critic - Critic Markup support
 http://facelessuser.github.io/pymdown-extensions/extensions/critic/
 http://criticmarkup.com/
 
-escapeall — don't convert spaces, octotorps and another symbols
+escapeall - don't convert spaces, octotorps and another symbols
 http://facelessuser.github.io/pymdown-extensions/extensions/escapeall/
 https://github.com/waylan/Python-Markdown/issues/564#issuecomment-299681538
 
-inlinehilite — inline highlight code
+inlinehilite - inline highlight code
 http://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 https://pythonhosted.org/Markdown/extensions/code_hilite.html#step-2-add-css-classes
 
-magiclink — clickable Bare URL
+magiclink - clickable Bare URL
 http://facelessuser.github.io/pymdown-extensions/extensions/magiclink/
 
-progressbar — candy Progress Bar
+progressbar - candy Progress Bar
 http://facelessuser.github.io/pymdown-extensions/extensions/progressbar/
 
-smartsymbols — replace symbols to correct.
+smartsymbols - replace symbols to correct.
 Example: (c) → ©
 http://facelessuser.github.io/pymdown-extensions/extensions/smartsymbols/
 
-snippets — insert HTML to another HTML
+snippets - insert HTML to another HTML
 http://facelessuser.github.io/pymdown-extensions/extensions/snippets/
 
-superfences — different block highlights.
+superfences - different block highlights.
 http://facelessuser.github.io/pymdown-extensions/extensions/superfences/
 http://pygments.org/docs/lexers/
 
-tilde — ~~delete~~ and sub support
+tilde - ~~delete~~ and sub support
 http://facelessuser.github.io/pymdown-extensions/extensions/tilde/
 
 #
@@ -289,27 +289,27 @@ http://facelessuser.github.io/pymdown-extensions/extensions/tilde/
 
 https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
 
-downheader — down headers to 1 item, that MD002 is good
+downheader - down headers to 1 item, that MD002 is good
 https://github.com/cprieto/mdx_downheader
 
-markdown_blockdiag — diagrams in Markdown
+markdown_blockdiag - diagrams in Markdown
 https://github.com/gisce/markdown-blockdiag
 http://blockdiag.com/en/blockdiag/index.html
 
-markdown_newtab — add target='_blank' for all links
+markdown_newtab - add target='_blank' for all links
 Attribute don't add for local anchors
 https://github.com/Undeterminant/markdown-newtab/blob/master/run_tests.py
 
-md_environ — add own environment variables to text
+md_environ - add own environment variables to text
 https://github.com/cmacmackin/md-environ
 
-mdx_cite — cite tag
+mdx_cite - cite tag
 https://github.com/aleray/mdx_cite
 
-mdx_custom_span_class — custom !!classes!! for span tag
+mdx_custom_span_class - custom !!classes!! for span tag
 https://github.com/exaroth/mdx_custom_span_class
 
-pyembed — embed videos/images from different popular sites
+pyembed - embed videos/images from different popular sites
 https://pyembed.github.io/usage/markdown/
 """
 
@@ -324,7 +324,7 @@ MARKDOWN = {
         #
         'markdown.extensions.admonition': {},
         # [DEPRECATED] just_table conflict, just_table tables display incorrect.
-        # nl2br — extension, without which I can work.
+        # nl2br - extension, without which I can work.
         # 'markdown.extensions.nl2br': {},
         'markdown.extensions.sane_lists': {},
         # [DEPRECATED] "section_number" disabling bug:
@@ -418,7 +418,7 @@ TAGS_SAVE_AS = 'tag/alltags.html'
 # *                                   Other                                  *
 # ****************************************************************************
 
-# Pagination — division of articles
+# Pagination - division of articles
 DEFAULT_PAGINATION = False
 
 # Disable logging of empty alt attribute, needs "import logging" module
