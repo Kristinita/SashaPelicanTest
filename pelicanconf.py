@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: Kristinita
 # @Date: 2017-01-17 17:43:09
-# @Last Modified time: 2018-05-04 10:32:55
+# @Last Modified time: 2018-05-04 11:41:04
 """Pelican configuration file.
 
 For development. publishconf.py — for publishing.
@@ -12,7 +12,7 @@ For development. publishconf.py — for publishing.
 # Require PyYAML module:
 # http://pyyaml.org/wiki/PyYAML
 import yaml
-YAMLCONFIG = yaml.load(open('pelicanvariables.yaml'))
+YAMLCONFIG = yaml.load(open('pelicanvariables.yaml', encoding='utf-8'))
 PATH = YAMLCONFIG['path']
 OUTPUT_PATH = YAMLCONFIG['output_path']
 THEME = YAMLCONFIG['theme']
