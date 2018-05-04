@@ -65,7 +65,7 @@ install:
 # [WARNING] For local Scoop installation must required:
 # “Set-ExecutionPolicy RemoteSigned -scope CurrentUser”
 # http://scoop.sh/
-- ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+# - ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 # [WARNING] npm parallel doesn't work, example:
 # https://ci.appveyor.com/project/Kristinita/sashapelicantest/build/1.0.25/job/70x5h1qq2d6j8gyp
 # [WARNING] start command doesn't work without batch file:
