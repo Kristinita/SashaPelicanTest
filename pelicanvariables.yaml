@@ -27,3 +27,26 @@ plugin_paths:
 - pelican-plugins
 # Cache path
 cache_path: pelican_cache
+
+
+# [CHANGE IT]
+# Custom settings, change it
+author: Саша Черных
+sitename: Поиск Кристиниты
+timezone: Europe/Moscow
+default_lang: en
+# Site URL. Absolute path for publishing.
+siteurl: https://kristinita.ru
+page_paths:
+- Pages
+article_paths:
+- Gingerinas
+- Giologica
+- IT-articles
+- Life-hacks
+- Programs
+- Smert-svobode
+- Sasha-Black
+- Sublime-Text
+# GitHub repository URL of this source:
+github_url: https://github.com/Kristinita/KristinitaPelican
