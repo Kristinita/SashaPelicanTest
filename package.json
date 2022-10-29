@@ -31,7 +31,7 @@
 		"@commitlint/cli": "^6.2.0",
 		"@commitlint/travis-cli": "^6.2.0",
 		"autoprefixer": "^8.4.1",
-		"browser-sync": "^2.24.2",
+		"browser-sync": "^2.27.10",
 		"bs-html-injector": "^3.0.3",
 		"covgen": "^3.0.2",
 		"eclint": "^2.7.0",
